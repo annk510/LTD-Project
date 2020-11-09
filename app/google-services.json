@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "950574321302",
+    "firebase_url": "https://doanltdd-60a15.firebaseio.com",
+    "project_id": "doanltdd-60a15",
+    "storage_bucket": "doanltdd-60a15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950574321302:android:89d2dce9d251d4d0f7bcb7",
+        "android_client_info": {
+          "package_name": "com.example.vongship_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950574321302-dr27lccnhn696so15comuvnsoktrhn9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1tfe5-wYlqqX1hedmE-RNi4Mcon8TkdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950574321302-dr27lccnhn696so15comuvnsoktrhn9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:icon="@drawable/ic_menu"
+        android:title="menu"
+        app:showAsAction="always">
+        <menu>
+            <item android:title="Chọn ngôn ngữ"/>
+            <item android:title="Hợp tác"/>
+            <item
+                android:id="@+id/Menulogout"
+                android:title="Đăng xuất"/>
+        </menu>
+    </item>
+
+</menu>
