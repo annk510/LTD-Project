@@ -44,9 +44,11 @@ public class ForgotPasswordsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
 
                 String email = inputEmail.getText().toString().trim();
 
@@ -55,7 +57,6 @@ public class ForgotPasswordsActivity extends AppCompatActivity {
                     return;
                 }
 
-                progressBar.setVisibility(View.VISIBLE);
                 auth.sendPasswordResetEmail(email)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override

@@ -1,5 +1,6 @@
 package com.example.vongship_android.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
                     switch (menuItem.getItemId()){
                         case R.id.home:
-                            selectedFragment = new HomeFragment();
+                            selectedFragment= new HomeFragment();
                             break;
                         case R.id.nofi:
                             selectedFragment = new NotificationFragment();

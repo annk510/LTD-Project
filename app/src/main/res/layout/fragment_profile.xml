@@ -11,37 +11,38 @@
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
         android:layout_height="127dp">
+
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_marginLeft="22dp"
-            android:layout_gravity="center_vertical"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/cat"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#EDEDED"/>
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="22dp"
+            app:civ_border_color="#EDEDED"
+            app:civ_border_width="2dp" />
         <RelativeLayout
             android:layout_marginLeft="30dp"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/nameTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:text="Thành Luân"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
             <TextView
-                android:layout_below="@id/nameTv"
                 android:id="@+id/phoneTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/nameTv"
                 android:text="0383.422.211"
-                android:textSize="18dp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="16sp" />
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -62,22 +63,24 @@
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/recommendTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Giới thiệu Loship cho bạn bè"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
             <TextView
-                android:layout_below="@id/recommendTv"
                 android:id="@+id/rcmDcrpTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/recommendTv"
                 android:text="Nhận ngay phần thưởng hấp dẫn"
-                android:textSize="18dp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="17sp" />
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -91,16 +94,18 @@
         android:padding="10dp">
 
         <TextView
+            android:drawablePadding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/boderbot"
             android:drawableLeft="@drawable/ic_emotion"
             android:drawableRight="@drawable/ic_forward"
+            android:fontFamily="@font/montserrat"
             android:padding="5dp"
             android:text=" Cộng đồng Loship"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -109,10 +114,12 @@
             android:background="@drawable/boderbot"
             android:drawableLeft="@drawable/ic_favorite"
             android:drawableRight="@drawable/ic_forward"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/montserrat"
             android:padding="5dp"
             android:text=" Cửa hàng yêu thích"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -121,10 +128,12 @@
             android:background="@drawable/boderbot"
             android:drawableLeft="@drawable/ic_edit"
             android:drawableRight="@drawable/ic_forward"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/montserrat"
             android:padding="5dp"
             android:text=" Quản lý hồ sơ"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -133,10 +142,12 @@
             android:background="@drawable/boderbot"
             android:drawableLeft="@drawable/ic_card"
             android:drawableRight="@drawable/ic_forward"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/montserrat"
             android:padding="5dp"
             android:text=" Quản lý thẻ"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -145,10 +156,12 @@
             android:background="@drawable/boderbot"
             android:drawableLeft="@drawable/ic_help"
             android:drawableRight="@drawable/ic_forward"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/montserrat"
             android:padding="5dp"
             android:text=" Câu hỏi thường gặp"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -157,10 +170,12 @@
             android:background="@drawable/boderbot"
             android:drawableLeft="@drawable/ic_textsms"
             android:drawableRight="@drawable/ic_forward"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/montserrat"
             android:padding="5dp"
             android:text=" Đề xuất ý tưởng mong muốn"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -169,10 +184,12 @@
             android:background="@drawable/boderbot"
             android:drawableLeft="@drawable/ic_textsms"
             android:drawableRight="@drawable/ic_forward"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/montserrat"
             android:padding="5dp"
             android:text=" Đóng góp tính năng Loship"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -181,10 +198,12 @@
             android:background="@drawable/boderbot"
             android:drawableLeft="@drawable/ic_phone"
             android:drawableRight="@drawable/ic_forward"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/montserrat"
             android:padding="5dp"
             android:text=" Liên hệ với Loship"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -194,16 +213,19 @@
         android:background="#FFFFFF"
         android:orientation="vertical"
         android:padding="10dp">
+
         <TextView
-            android:layout_below="@+id/listOption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/listOption"
             android:layout_margin="5dp"
             android:background="@drawable/boderbot"
             android:drawableLeft="@drawable/ic_logout"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/montserrat"
             android:padding="5dp"
-            android:text=" Đăng xuất"
+            android:text="Phiên bản hiện tại 1.0.0"
             android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 </RelativeLayout>

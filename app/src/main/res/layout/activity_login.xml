@@ -41,28 +41,34 @@
         android:textSize="28sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/user_Login"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/signinTv"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_centerHorizontal="true"
-        android:drawablePadding="10dp"
-        android:hint="Email"
-        android:inputType="text"
-        android:textColorHint="#8D8E8F"
-        android:textStyle="italic" />
+        android:id="@+id/inputlayout1"
+        android:layout_below="@+id/signinTv"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_Login"
+            android:hint="Email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="textEmailAddress"
+            android:textColorHint="#8D8E8F"
+            android:textStyle="italic"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:layout_centerHorizontal="true"
         android:id="@+id/inputlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/user_Login"
-        app:passwordToggleEnabled="true">
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/inputlayout1"
+        app:passwordToggleEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/pass_Login"
-            android:layout_gravity="center"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Mật khẩu"
             android:inputType="textPassword"
