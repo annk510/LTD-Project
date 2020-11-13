@@ -3,10 +3,13 @@ package com.example.vongship_android.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.vongship_android.Adapter.CategoriesAdapter;
+import com.example.vongship_android.Adapter.ImageAdapter;
 import com.example.vongship_android.Model.Categories;
 import com.example.vongship_android.R;
 
@@ -33,5 +36,8 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         categoriesArrayList.add(new Categories(7,"Trà Sữa6",R.drawable.trsua));
         categoriesAdapter = new CategoriesAdapter(categoriesArrayList,this);
         recyclerView.setAdapter(categoriesAdapter);
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        ImageAdapter adapter = new ImageAdapter(this);
+        viewPager.setAdapter(adapter);
     }
 }
