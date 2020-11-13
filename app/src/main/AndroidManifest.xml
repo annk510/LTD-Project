@@ -13,7 +13,7 @@
         android:roundIcon="@drawable/lgapp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name=".MyFirebaseService">
+        <service android:name=".service.MyFirebaseService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

@@ -59,7 +59,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView2"
+                            android:id="@+id/txt_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -340,9 +340,14 @@
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CỬA HÀNG" />
+            android:layout_margin="10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="CỬA HÀNG"
+            android:textSize="18sp"
+            tools:textStyle="bold" />
+
     </LinearLayout>
 
 </LinearLayout>

@@ -34,28 +34,30 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/montserrat"
         android:text="Đăng Nhập"
         android:textColor="#000000"
-        android:textSize="28sp"
+        android:textSize="26sp"
         android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_centerHorizontal="true"
         android:id="@+id/inputlayout1"
-        android:layout_below="@+id/signinTv"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:layout_below="@+id/signinTv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/user_Login"
-            android:hint="Email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:textColorHint="#8D8E8F"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

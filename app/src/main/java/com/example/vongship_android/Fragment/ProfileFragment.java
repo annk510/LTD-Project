@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.vongship_android.DownloadImageTask;
+
+import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

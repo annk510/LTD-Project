@@ -1,4 +1,4 @@
-package com.example.vongship_android;
+package com.example.vongship_android.Class;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
