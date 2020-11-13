@@ -1,6 +1,8 @@
 package com.example.vongship_android.Activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.vongship_android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         btnLogin = (Button) findViewById(R.id.bt_dangnhap);
-        tvgoidangki = (TextView)  findViewById(R.id.dangki);
+        tvgoidangki = (TextView) findViewById(R.id.dangki);
         tvgoiquenmatkhau = (TextView) findViewById(R.id.forgotTv);
 
         inputEmail = (EditText) findViewById(R.id.user_Login);
@@ -104,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if (password.length() < 6) {
                                         inputPassword.setError("Mật khẩu quá ngắn, trên 6 kí tự!");
                                     } else {
-                                        Toast.makeText(LoginActivity.this,"\n" +
+                                        Toast.makeText(LoginActivity.this, "\n" +
                                                 "Xác thực không thành công, hãy kiểm tra email và mật khẩu của bạn hoặc đăng ký", Toast.LENGTH_LONG).show();
                                     }
                                 } else {
@@ -116,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                         });
             }
         });
+
     }
 
 }

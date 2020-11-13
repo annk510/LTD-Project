@@ -1,4 +1,4 @@
-package com.example.vongship_android;
+package com.example.vongship_android.service;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
