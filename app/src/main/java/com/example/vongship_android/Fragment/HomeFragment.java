@@ -17,9 +17,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.vongship_android.Activity.FoodDeliveryActivity;
 import com.example.vongship_android.Adapter.ImageAdapter;
 import com.example.vongship_android.Activity.MapsActivity;
 import com.example.vongship_android.DownloadImageTask;
@@ -34,6 +36,7 @@ import static com.example.vongship_android.R.id.location_click;
 
 public class HomeFragment extends Fragment {
     LinearLayout location;
+    CardView gotoFoodDelivery;
     LocationManager locationManager;
 
     @SuppressLint("WrongViewCast")
@@ -42,6 +45,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         location = root.findViewById(location_click);
+        gotoFoodDelivery = root.findViewById(R.id.gotoFoodDelivery);
         ViewPager viewPager = root.findViewById(R.id.viewPager);
         ImageAdapter adapter = new ImageAdapter(getActivity());
         viewPager.setAdapter(adapter);
@@ -90,6 +94,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+        gotoFoodDelivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), FoodDeliveryActivity.class);
                 startActivity(intent);
             }
         });
