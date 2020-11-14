@@ -16,10 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-<<<<<<< HEAD
-
-=======
->>>>>>> 42db1b76fc02f2e91a96459ce802cfcdcf9396bc
             <ImageView
                 android:id="@+id/imgOfCategory"
                 android:layout_width="120dp"
