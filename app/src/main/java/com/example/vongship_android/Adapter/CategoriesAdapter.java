@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,11 +48,11 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView tame;
-        CircleImageView img;
+        ImageView img;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tame = (TextView) itemView.findViewById(R.id.nameOfCategory);
-            img = (CircleImageView) itemView.findViewById(R.id.imgOfCategory);
+            img = (ImageView) itemView.findViewById(R.id.imgOfCategory);
         }
     }
 }
