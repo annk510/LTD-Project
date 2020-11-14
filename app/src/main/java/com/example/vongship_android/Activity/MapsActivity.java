@@ -1,14 +1,17 @@
 package com.example.vongship_android.Activity;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -44,7 +47,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 || permission_coarse_loc != PackageManager.PERMISSION_GRANTED) {
             makeRequest();
         }
-
     }
 
     private void makeRequest() {

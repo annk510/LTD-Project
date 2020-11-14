@@ -4,86 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.FoodDeliveryActivity"
+    android:background="#FFFFFF"
     android:orientation="vertical"
-    >
+    tools:context=".Activity.FoodDeliveryActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarFood"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#fff"
+        app:contentInsetLeft="150dp"
+        app:contentInsetStart="150dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp">
+
         <EditText
             android:id="@+id/inputSearch"
             android:layout_width="match_parent"
             android:layout_height="50sp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:ems="10"
-            android:layout_marginTop="50dp"
-            android:paddingStart="15dp"
-            android:hint="Bạn thèm món gì"
+
+            android:background="@drawable/rounded_border"
             android:drawableStart="@drawable/ic_baseline_search_24"
-            android:background="@drawable/rounded_border" />
+            android:ems="10"
+            android:hint="Bạn thèm món gì"
+            android:paddingStart="15dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
         android:orientation="vertical"
-        android:paddingStart="15dp"
-        android:layout_marginVertical="10dp">
+        android:paddingStart="15dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Giao tới địa chỉ"
             android:ems="10"
-            android:textSize="18dp"/>
+            android:text="Giao tới địa chỉ"
+            android:textSize="18dp" />
+
         <TextView
             android:id="@+id/currentLocation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_baseline_location_on_24"
-            android:textSize="20dp"
-            android:text="Lấy địa chỉ hiện tại theo gg map"
+            android:layout_height="25dp"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:drawableStart="@drawable/ic_map"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Lấy địa chỉ hiện tại theo gg map"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_margin="15dp"
-            android:background="@drawable/rounded_border">
-        </androidx.viewpager.widget.ViewPager>
+            android:background="@drawable/rounded_border"></androidx.viewpager.widget.ViewPager>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="15dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#000000"
                 android:text="CHỌN THEO THỂ LOẠI"
-                android:layout_weight="1"
-                android:textSize="20dp"/>
+                android:textSize="18sp"
+                tools:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Xem tất cả(lấy sum)"
-                android:textAlignment="textEnd"/>
+                android:text="Xem tất cả()"
+                android:textAlignment="textEnd" />
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/CategoriesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/CategoriesRecyclerView"/>
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" />
     </LinearLayout>
 </LinearLayout>

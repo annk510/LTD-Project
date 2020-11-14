@@ -7,13 +7,20 @@
     android:background="#FFFFFF"
     tools:context=".Activity.LoginActivity"
     tools:ignore="MissingDefaultResource">
+    <androidx.appcompat.widget.Toolbar
+        app:contentInsetLeft="150dp"
+        app:contentInsetStart="150dp"
+        android:id="@+id/toolbarReg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#fff"/>
 
     <ImageView
         android:id="@+id/branch"
         android:layout_width="250dp"
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/loshipbranch" />
 
     <TextView

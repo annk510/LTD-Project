@@ -3,6 +3,7 @@ package com.example.vongship_android.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.vongship_android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -72,5 +75,28 @@ public class ForgotPasswordsActivity extends AppCompatActivity {
                         });
             }
         });
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarFor);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.abc);    //logo muốn hiện thị trên action bar
+        actionBar.setDisplayUseLogoEnabled(true);
+
+        actionBar.setDisplayHomeAsUpEnabled(true);//của nút quay lại trên toolbar, có cái func ở dưới nữa.
+
+        actionBar.setTitle("");
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

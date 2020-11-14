@@ -21,24 +21,26 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-<<<<<<< HEAD
 import androidx.cardview.widget.CardView;
-=======
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
->>>>>>> nhvong
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.vongship_android.Activity.FoodDeliveryActivity;
+import com.example.vongship_android.Adapter.CategoriesAdapter;
 import com.example.vongship_android.Adapter.ImageAdapter;
 import com.example.vongship_android.Activity.MapsActivity;
 
 import com.example.vongship_android.Class.DownloadImageTask;
+import com.example.vongship_android.Model.Categories;
 import com.example.vongship_android.R;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -49,7 +51,8 @@ import static com.example.vongship_android.R.id.location_click;
 public class HomeFragment extends Fragment {
     LinearLayout location;
     CardView gotoFoodDelivery;
-    LocationManager locationManager;
+    ArrayList<Categories> categoriesArrayList;
+    CategoriesAdapter categoriesAdapter;
 
     @SuppressLint("WrongViewCast")
     @Nullable
@@ -62,10 +65,23 @@ public class HomeFragment extends Fragment {
         ImageAdapter adapter = new ImageAdapter(getActivity());
         viewPager.setAdapter(adapter);
         envent();
+        int permission_fine_loc = ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        int permission_coarse_loc = ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION);
 
-        TextView txtAdress = (TextView) root.findViewById(R.id.txt_Address);
-        TextView txtDate = (TextView) root.findViewById(R.id.txt_date);
-        txtAdress.setText(VT());
+        if (permission_fine_loc != PackageManager.PERMISSION_GRANTED
+                || permission_coarse_loc != PackageManager.PERMISSION_GRANTED) {
+            makeRequest();
+        }
+        TextView txtAdress =root.findViewById(R.id.txt_Address);
+        TextView txtDate =root.findViewById(R.id.txt_date);
+        if(VT() != null){
+            txtAdress.setText(VT());
+        }else {
+            txtAdress.setText("");
+        }
+
 
         new DownloadImageTask((ImageView) root.findViewById(R.id.IMGprofile_home))
                 .execute("https://firebasestorage.googleapis.com/v0/b/doanltdd-60a15.appspot.com/o/Image%2FprofileImage.jpg?alt=media&token=40d48a63-1ac3-4e2c-946d-4b8515f79c62");
@@ -73,10 +89,40 @@ public class HomeFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE,d MMMM, ''yyyy");
         String currentDateandTime = sdf.format(new Date());
         txtDate.setText(currentDateandTime);
+
+        RecyclerView recyclerView =root.findViewById(R.id.CuaHangRecyclerView);
+        RecyclerView recyclerView1 =root.findViewById(R.id.CuaHangKMRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView1.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView1.setLayoutManager(layoutManager1);
+        CuaHangMoi();
+        recyclerView.setAdapter(categoriesAdapter);
+        recyclerView1.setAdapter(categoriesAdapter);
+
         return root;
     }
     private void makeRequest() {
         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+        Intent refresh = new Intent(getContext(), HomeFragment.class);
+        startActivity(refresh);
+        getActivity().finish();
+    }
+
+    public void CuaHangMoi(){
+        categoriesArrayList = new ArrayList<>();
+        categoriesArrayList.add(new Categories(1,"Bún Đậu Cầu Gỗ - Phan Xích Long",R.drawable.quan2));
+        categoriesArrayList.add(new Categories(2,"Trà Tiên Hưởng - Khánh Hội",R.drawable.quan3));
+        categoriesArrayList.add(new Categories(3,"Heekcaa Original",R.drawable.quan4));
+        categoriesArrayList.add(new Categories(4,"TocoToco Bubble Tea",R.drawable.quan5));
+        categoriesArrayList.add(new Categories(5,"Cha-Jiang Việt Nam - Calmette",R.drawable.quan6));
+        categoriesArrayList.add(new Categories(7,"Trà Sữa, Trà Trái Cây Thỏ Ngọc",R.drawable.quan7));
+        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,getActivity());
+    }
+    public void CuaHangKM(){
+
     }
 
 

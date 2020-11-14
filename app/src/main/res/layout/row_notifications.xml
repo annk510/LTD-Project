@@ -16,24 +16,26 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:orientation="vertical">
+
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="text"
-                android:textColor="#232323"
-                android:textSize="20dp"
-                android:layout_margin="5dp"
-                android:textStyle="normal"
-                android:id="@+id/text"/>
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="text"
+            android:textColor="#232323"
+            android:textSize="18dp"
+            android:textStyle="normal" />
+
         <TextView
-                android:id="@+id/time"
-                android:layout_below="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="time"
-                android:textColor="#FF8A9091"
-                android:textSize="17dp"
-                android:textStyle="italic" />
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text"
+            android:layout_marginTop="5dp"
+            android:text="time"
+            android:textColor="#FF8A9091"
+            android:textSize="15dp"
+            android:textStyle="italic" />
     </RelativeLayout>
 </LinearLayout>
