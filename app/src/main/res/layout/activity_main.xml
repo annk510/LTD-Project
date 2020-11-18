@@ -8,8 +8,8 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true">
     <androidx.appcompat.widget.Toolbar
-        app:contentInsetStart="@dimen/_150sdp"
-        app:contentInsetLeft="@dimen/_150sdp"
+        app:contentInsetStart="170dp"
+        app:contentInsetLeft="170dp"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="40dp"

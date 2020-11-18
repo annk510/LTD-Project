@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -20,6 +21,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.vongship_android.Adapter.CategoriesAdapter;
@@ -117,8 +120,8 @@ public class FoodDeliveryActivity extends AppCompatActivity {
 
         actionBar.setTitle("");
 
-
     }
+
 
     public String VT() {
         LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);

@@ -29,7 +29,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.vongship_android.Activity.CategoryDetailsActivity;
 import com.example.vongship_android.Activity.FoodDeliveryActivity;
+import com.example.vongship_android.Activity.StoreDetailsActivity;
 import com.example.vongship_android.Adapter.CategoriesAdapter;
 import com.example.vongship_android.Adapter.BannerAdapter;
 import com.example.vongship_android.Activity.MapsActivity;
