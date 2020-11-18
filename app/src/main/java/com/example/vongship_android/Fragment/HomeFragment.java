@@ -31,11 +31,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.vongship_android.Activity.FoodDeliveryActivity;
 import com.example.vongship_android.Adapter.CategoriesAdapter;
-import com.example.vongship_android.Adapter.ImageAdapter;
+import com.example.vongship_android.Adapter.BannerAdapter;
 import com.example.vongship_android.Activity.MapsActivity;
 
 import com.example.vongship_android.Class.DownloadImageTask;
-import com.example.vongship_android.Model.Categories;
+import com.example.vongship_android.DTO.Categories;
 import com.example.vongship_android.R;
 
 import java.io.IOException;
@@ -45,7 +45,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import static android.content.Context.LOCATION_SERVICE;
 import static com.example.vongship_android.R.id.location_click;
 
 public class HomeFragment extends Fragment {
@@ -62,7 +61,7 @@ public class HomeFragment extends Fragment {
         location = root.findViewById(location_click);
         gotoFoodDelivery = root.findViewById(R.id.gotoFoodDelivery);
         ViewPager viewPager = root.findViewById(R.id.viewPager);
-        ImageAdapter adapter = new ImageAdapter(getActivity());
+        BannerAdapter adapter = new BannerAdapter(getActivity());
         viewPager.setAdapter(adapter);
         envent();
         int permission_fine_loc = ContextCompat.checkSelfPermission(getActivity(),

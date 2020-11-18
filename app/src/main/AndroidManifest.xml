@@ -32,6 +32,9 @@
         <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.CategoryDetailsActivity" />
+        <activity android:name=".Activity.StoreDetailsActivity" />
+        <activity android:name=".Activity.ProductDetailsActivity"/>
         <activity android:name=".Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

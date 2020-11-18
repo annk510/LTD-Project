@@ -1,4 +1,4 @@
-package com.example.vongship_android.Model;
+package com.example.vongship_android.DTO;
 
 public class Categories {
 
