@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.R;
 
-public class CategoryHolder extends RecyclerView.ViewHolder{
-    private TextView tame;
+public class CategoryHolderVertical extends RecyclerView.ViewHolder{
+    private TextView name;
     private ImageView img;
 
-    public TextView getTame() {
-        return tame;
+    public TextView getName() {
+        return name;
     }
 
-    public void setTame(TextView tame) {
-        this.tame = tame;
+    public void setName(TextView name) {
+        this.name = name;
     }
 
     public ImageView getImg() {
@@ -28,9 +28,10 @@ public class CategoryHolder extends RecyclerView.ViewHolder{
     public void setImg(ImageView img) {
         this.img = img;
     }
-    public CategoryHolder(@NonNull View itemView) {
+
+    public CategoryHolderVertical(@NonNull View itemView) {
         super(itemView);
-        this.setTame((TextView) itemView.findViewById(R.id.nameOfCategory));
-        this.setImg((ImageView) itemView.findViewById(R.id.imgOfCategory)) ;
+        this.setName((TextView) itemView.findViewById(R.id.itemcategoryvertical_name));
+        this.setImg((ImageView) itemView.findViewById(R.id.itemcategoryvertical_image));
     }
 }

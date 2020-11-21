@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.R;
 
-public class StoreHolder extends RecyclerView.ViewHolder {
+public class StoreHolderHorizontal extends RecyclerView.ViewHolder{
     private TextView distance;
     private TextView sales;
     private TextView name;
@@ -47,11 +47,11 @@ public class StoreHolder extends RecyclerView.ViewHolder {
         this.img = img;
     }
 
-    public StoreHolder(@NonNull View itemView) {
+    public StoreHolderHorizontal(@NonNull View itemView) {
         super(itemView);
-        this.setName((TextView) itemView.findViewById(R.id.nameOfStore)) ;
-        this.setImg((ImageView) itemView.findViewById(R.id.imgOfStore));
-        this.setDistance((TextView) itemView.findViewById(R.id.distanceOfStore));
-        this.setSales((TextView) itemView.findViewById(R.id.salesOfStore));
+        this.setName((TextView) itemView.findViewById(R.id.itemstorehorizontal_name)) ;
+        this.setImg((ImageView) itemView.findViewById(R.id.itemstorehorizontal_image));
+        this.setDistance((TextView) itemView.findViewById(R.id.itemstorehorizontal_distance));
+        this.setSales((TextView) itemView.findViewById(R.id.itemstorehorizontal_sales));
     }
 }

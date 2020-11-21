@@ -118,7 +118,7 @@ public class HomeFragment extends Fragment {
         categoriesArrayList.add(new Categories(4,"TocoToco Bubble Tea",R.drawable.quan5));
         categoriesArrayList.add(new Categories(5,"Cha-Jiang Việt Nam - Calmette",R.drawable.quan6));
         categoriesArrayList.add(new Categories(7,"Trà Sữa, Trà Trái Cây Thỏ Ngọc",R.drawable.quan7));
-        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,getActivity());
+        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,getActivity(),LinearLayoutManager.HORIZONTAL);
     }
     public void CuaHangKM(){
 

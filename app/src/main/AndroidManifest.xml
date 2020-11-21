@@ -13,13 +13,14 @@
         android:roundIcon="@drawable/lgapp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <service android:name=".service.MyFirebaseService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <activity android:name=".Activity.FoodDeliveryActivity"></activity>
+        <activity android:name=".Activity.FoodDeliveryActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -34,7 +35,7 @@
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.CategoryDetailsActivity" />
         <activity android:name=".Activity.StoreDetailsActivity" />
-        <activity android:name=".Activity.ProductDetailsActivity"/>
+        <activity android:name=".Activity.ProductDetailsActivity" />
         <activity android:name=".Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
