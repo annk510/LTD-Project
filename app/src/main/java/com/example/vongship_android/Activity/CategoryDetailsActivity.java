@@ -26,12 +26,12 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         stores.setHasFixedSize(true);
         stores.setLayoutManager(layoutManager);
         storeArrayList = new ArrayList<>();
-        storeArrayList.add(new Store("Tên Cửa Hàng1","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng2","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng3","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng4","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng5","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng6","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Cơm Chiên Hảo Hảo","1.3 km","Sale 11%",R.drawable.comchien));
+        storeArrayList.add(new Store("Bánh Cuốn Lê Duẫn","2.5 km","Freeship 3km",R.drawable.banhcuon));
+        storeArrayList.add(new Store("Milk Tea & Coffe - Bông","500 m","Sale 17 %",R.drawable.trasua));
+        storeArrayList.add(new Store("Bánh Ép Huế Kim Ngân","700 m","Freeship 2km",R.drawable.banhep));
+        storeArrayList.add(new Store("Cơm Gà Trần Cao Vân","300 m","Sale 15%",R.drawable.comga));
+        storeArrayList.add(new Store("Quán Ngố - Nước Dừa","2 km","Freeship 2km",R.drawable.nuocdua));
         storesAdapter = new StoresAdapter(storeArrayList,this,LinearLayoutManager.VERTICAL);
         stores.setAdapter(storesAdapter);
 
@@ -66,4 +66,4 @@ public class CategoryDetailsActivity extends AppCompatActivity {
 //
 //        return super.onOptionsItemSelected(item);
 //    }
-}
+    }}
