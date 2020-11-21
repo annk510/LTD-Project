@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.Activity.ProductDetailsActivity;
+import com.example.vongship_android.Activity.StoreDetailsActivity;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
 import com.example.vongship_android.ViewHolder.StoreHolderHorizontal;
@@ -38,7 +39,7 @@ public class StoresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, ProductDetailsActivity.class);
+                    Intent intent = new Intent(context, StoreDetailsActivity.class);
                     context.startActivity(intent);
                 }
             });
@@ -48,7 +49,7 @@ public class StoresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, ProductDetailsActivity.class);
+                    Intent intent = new Intent(context, StoreDetailsActivity.class);
                     context.startActivity(intent);
                 }
             });

@@ -1,6 +1,7 @@
 package com.example.vongship_android.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.vongship_android.Activity.ProductDetailsActivity;
+import com.example.vongship_android.Activity.StoreDetailsActivity;
 import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.R;
 import com.example.vongship_android.ViewHolder.CategoryHolderHorizontal;
@@ -34,6 +37,8 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Intent intent = new Intent(context, ProductDetailsActivity.class);
+                    context.startActivity(intent);
                 }
             });
             return new ProductHolderVertical(itemView);
