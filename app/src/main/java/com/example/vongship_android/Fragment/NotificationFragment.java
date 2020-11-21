@@ -43,7 +43,7 @@ public class NotificationFragment extends Fragment {
         String rDescription[];
         int rImgs[];
         MyAdapter (Context c, String title[],String description[],int imgs[] ){
-            super(c,R.layout.row_notifications, R.id.text,title);
+            super(c,R.layout.item_notification, R.id.text,title);
             this.context =c;
             this.rTitle=title;
             this.rDescription=description;
@@ -54,7 +54,7 @@ public class NotificationFragment extends Fragment {
 
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
             LayoutInflater layoutInflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflater.inflate(R.layout.row_notifications,parent, false);
+            View row = layoutInflater.inflate(R.layout.item_notification,parent, false);
             ImageView images= row.findViewById(R.id.image);
             TextView myTitle = row.findViewById(R.id.text);
             TextView myDescription = row.findViewById(R.id.time);
