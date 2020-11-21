@@ -44,6 +44,15 @@ dependencies {
     implementation 'info.androidhive:fontawesome:0.0.5'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     //noinspection GradleCompatible
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:26.1.0'
+
+    // butter knife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+
 
 
 }
