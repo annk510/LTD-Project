@@ -34,8 +34,10 @@ import com.example.vongship_android.Adapter.CategoriesAdapter;
 import com.example.vongship_android.Adapter.BannerAdapter;
 import com.example.vongship_android.Activity.MapsActivity;
 
+import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.DTO.Categories;
+import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
 
 import java.io.IOException;
@@ -50,8 +52,8 @@ import static com.example.vongship_android.R.id.location_click;
 public class HomeFragment extends Fragment {
     LinearLayout location;
     CardView gotoFoodDelivery;
-    ArrayList<Categories> categoriesArrayList;
-    CategoriesAdapter categoriesAdapter;
+    ArrayList<Store> storeArrayList;
+    StoresAdapter storesAdapter;
 
     @SuppressLint("WrongViewCast")
     @Nullable
@@ -98,8 +100,8 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView1.setLayoutManager(layoutManager1);
         CuaHangMoi();
-        recyclerView.setAdapter(categoriesAdapter);
-        recyclerView1.setAdapter(categoriesAdapter);
+        recyclerView.setAdapter(storesAdapter);
+        recyclerView1.setAdapter(storesAdapter);
 
         return root;
     }
@@ -111,14 +113,17 @@ public class HomeFragment extends Fragment {
     }
 
     public void CuaHangMoi(){
-        categoriesArrayList = new ArrayList<>();
-        categoriesArrayList.add(new Categories(1,"Bún Đậu Cầu Gỗ - Phan Xích Long",R.drawable.quan2));
-        categoriesArrayList.add(new Categories(2,"Trà Tiên Hưởng - Khánh Hội",R.drawable.quan3));
-        categoriesArrayList.add(new Categories(3,"Heekcaa Original",R.drawable.quan4));
-        categoriesArrayList.add(new Categories(4,"TocoToco Bubble Tea",R.drawable.quan5));
-        categoriesArrayList.add(new Categories(5,"Cha-Jiang Việt Nam - Calmette",R.drawable.quan6));
-        categoriesArrayList.add(new Categories(7,"Trà Sữa, Trà Trái Cây Thỏ Ngọc",R.drawable.quan7));
-        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,getActivity(),LinearLayoutManager.HORIZONTAL);
+
+
+        storeArrayList = new ArrayList<>();
+        storeArrayList.add(new Store("Tên Cửa Hàng1","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Tên Cửa Hàng2","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Tên Cửa Hàng3","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Tên Cửa Hàng4","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Tên Cửa Hàng5","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Tên Cửa Hàng6","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storesAdapter = new StoresAdapter(storeArrayList,getActivity(),LinearLayoutManager.HORIZONTAL);
+
     }
     public void CuaHangKM(){
 
