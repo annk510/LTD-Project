@@ -21,12 +21,12 @@ public class StoreDetailsActivity extends AppCompatActivity {
         product.setHasFixedSize(true);
         product.setLayoutManager(layoutManager);
         productArrayList = new ArrayList<>();
-        productArrayList.add(new Product("1","Tên sản phẩm1","Giả","Mô tả",R.drawable.trsua));
-        productArrayList.add(new Product("1","Tên sản phẩm2","Giả","Mô tả",R.drawable.trsua));
-        productArrayList.add(new Product("1","Tên sản phẩm3","Giả","Mô tả",R.drawable.trsua));
-        productArrayList.add(new Product("1","Tên sản phẩm4","Giả","Mô tả",R.drawable.trsua));
-        productArrayList.add(new Product("1","Tên sản phẩm5","Giả","Mô tả",R.drawable.trsua));
-        productArrayList.add(new Product("1","Tên sản phẩm6","Giả","Mô tả",R.drawable.trsua));
+        productArrayList.add(new Product("1","Bánh Mỳ","35.000 VNĐ","Bánh mỳ Việt, đầy dinh dưỡng",R.drawable.banhmy));
+        productArrayList.add(new Product("1","Trà Sữa Trân Châu","50.000 VNĐ","Trà sữa thơm ngon nứt mũi",R.drawable.trasua));
+        productArrayList.add(new Product("1","Bánh Ép Huế","15.000 VNĐ","Bánh ép tôm thịt Huế",R.drawable.trsua));
+        productArrayList.add(new Product("1","Cà Phê","15.000 VNĐ","Đậm đà hương vị Miền Trung",R.drawable.caphe));
+        productArrayList.add(new Product("1","Nước Rau Má","20.000 VNĐ","Nước rau má làm đã cơn khát",R.drawable.rauma));
+        productArrayList.add(new Product("1","Bánh Cuốn","25.000 VNĐ","Càng cuốn càng ghiền",R.drawable.banhcuon));
         productAdapter = new ProductAdapter(productArrayList,this,LinearLayoutManager.VERTICAL);
         product.setAdapter(productAdapter);
 

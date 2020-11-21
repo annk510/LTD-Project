@@ -116,12 +116,12 @@ public class HomeFragment extends Fragment {
 
 
         storeArrayList = new ArrayList<>();
-        storeArrayList.add(new Store("Tên Cửa Hàng1","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng2","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng3","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng4","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng5","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng6","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Cơm Chiên Trần Cao Vân","1 km","Freeship 2km",R.drawable.comchien));
+        storeArrayList.add(new Store("Milk Tea & Coffee Bông","500 m","Freeship 2km",R.drawable.trachanh));
+        storeArrayList.add(new Store("Nước Giải khát Cao Thắng","100 m","Freeship 2km",R.drawable.rauma));
+        storeArrayList.add(new Store("Bánh Ép Huế - Hải Phòng","1.5 km","Freeship 2km",R.drawable.banhep));
+        storeArrayList.add(new Store("Bánh Mỳ Nướng Chang Chang","150 m","Freeship 2km",R.drawable.banhmy));
+        storeArrayList.add(new Store("The Books Coffee Library","300m","Freeship 2km",R.drawable.caphe));
         storesAdapter = new StoresAdapter(storeArrayList,getActivity(),LinearLayoutManager.HORIZONTAL);
 
     }
