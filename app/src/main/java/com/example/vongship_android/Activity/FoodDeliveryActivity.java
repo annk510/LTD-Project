@@ -20,12 +20,13 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.vongship_android.Adapter.CategoriesAdapter;
-import com.example.vongship_android.Adapter.ImageAdapter;
-import com.example.vongship_android.Model.Categories;
+import com.example.vongship_android.Adapter.BannerAdapter;
+import com.example.vongship_android.Adapter.StoresAdapter;
+import com.example.vongship_android.DTO.Categories;
+import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
 
 import java.io.IOException;
@@ -34,31 +35,74 @@ import java.util.List;
 import java.util.Locale;
 
 public class FoodDeliveryActivity extends AppCompatActivity {
-    RecyclerView recyclerView;
+    RecyclerView categories;
+    RecyclerView stores,stores1;
     ArrayList<Categories> categoriesArrayList;
+    ArrayList<Store> storeArrayList;
     CategoriesAdapter categoriesAdapter;
+    StoresAdapter storesAdapter;
+    void loadCategoriesRecyclerView(LinearLayoutManager layoutManager){
+        categories = findViewById(R.id.CategoriesRecyclerView);
+        categories.setHasFixedSize(true);
+        categories.setLayoutManager(layoutManager);
+        categoriesArrayList = new ArrayList<>();
+        categoriesArrayList.add(new Categories(1,"Tên danh mục1",R.drawable.trsua));
+        categoriesArrayList.add(new Categories(2,"Tên danh mục2",R.drawable.trsua));
+        categoriesArrayList.add(new Categories(3,"Tên danh mục3",R.drawable.trsua));
+        categoriesArrayList.add(new Categories(4,"Tên danh mục4",R.drawable.trsua));
+        categoriesArrayList.add(new Categories(5,"Tên danh mục5",R.drawable.trsua));
+        categoriesArrayList.add(new Categories(7,"Tên danh mục6",R.drawable.trsua));
+        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,this,LinearLayoutManager.HORIZONTAL);
+        categories.setAdapter(categoriesAdapter);
+
+    }
+    void loadStoreRecyclerView(LinearLayoutManager layoutManager){
+        stores = findViewById(R.id.StoresRecyclerView);
+        stores.setHasFixedSize(true);
+        stores.setLayoutManager(layoutManager);
+        storeArrayList = new ArrayList<>();
+        storeArrayList.add(new Store("Tên Cửa Hàng1","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Tên Cửa Hàng2","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Tên Cửa Hàng3","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Tên Cửa Hàng4","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Tên Cửa Hàng5","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Tên Cửa Hàng6","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storesAdapter = new StoresAdapter(storeArrayList,this,LinearLayoutManager.HORIZONTAL);
+        stores.setAdapter(storesAdapter);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_delivery);
-
-        recyclerView = findViewById(R.id.CategoriesRecyclerView);
-        recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        recyclerView.setLayoutManager(layoutManager);
+        categories = findViewById(R.id.CategoriesRecyclerView);
+        categories.setHasFixedSize(true);
+        categories.setLayoutManager(layoutManager);
         categoriesArrayList = new ArrayList<>();
-        categoriesArrayList.add(new Categories(1,"Trà Sữa1",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(2,"Trà Sữa2",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(3,"Trà Sữa3",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(4,"Trà Sữa4",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(5,"Trà Sữa5",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(7,"Trà Sữa6",R.drawable.trsua));
-        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,this);
-        recyclerView.setAdapter(categoriesAdapter);
-        ViewPager viewPager = findViewById(R.id.viewPager);
-        ImageAdapter adapter = new ImageAdapter(this);
-        viewPager.setAdapter(adapter);
+        categoriesArrayList.add(new Categories(1,"Tên danh mục1",R.drawable.trsua));
+        categoriesArrayList.add(new Categories(2,"Tên danh mục2",R.drawable.trsua));
+        categoriesArrayList.add(new Categories(3,"Tên danh mục3",R.drawable.trsua));
+        categoriesArrayList.add(new Categories(4,"Tên danh mục4",R.drawable.trsua));
+        categoriesArrayList.add(new Categories(5,"Tên danh mục5",R.drawable.trsua));
+        categoriesArrayList.add(new Categories(7,"Tên danh mục6",R.drawable.trsua));
+        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,this,LinearLayoutManager.HORIZONTAL);
+        categories.setAdapter(categoriesAdapter);
 
+//        stores = findViewById(R.id.StoresRecyclerView);
+//        stores.setHasFixedSize(true);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+//        stores.setLayoutManager(layoutManager1);
+//        stores.setAdapter(categoriesAdapter);
+        loadStoreRecyclerView(layoutManager1);
+        stores1 = findViewById(R.id.StoresRecyclerView1);
+        stores1.setHasFixedSize(true);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        stores1.setLayoutManager(layoutManager2);
+        stores1.setAdapter(categoriesAdapter);
+
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        BannerAdapter adapter = new BannerAdapter(this);
+        viewPager.setAdapter(adapter);
         TextView currentLocation = (TextView) findViewById(R.id.currentLocation);
         currentLocation.setText(VT());
 

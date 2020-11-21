@@ -9,10 +9,10 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.vongship_android.R;
 
-public class ImageAdapter extends PagerAdapter {
+public class BannerAdapter extends PagerAdapter {
     private Context mContext;
     private int[] mImageIds = new int[]{R.drawable.banner1, R.drawable.banner2, R.drawable.banner3, R.drawable.banner4, R.drawable.banner5};
-    public ImageAdapter(Context context) {
+    public BannerAdapter(Context context) {
         mContext = context;
     }
     @Override
