@@ -75,18 +75,7 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_delivery);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        categories = findViewById(R.id.CategoriesRecyclerView);
-        categories.setHasFixedSize(true);
-        categories.setLayoutManager(layoutManager);
-        categoriesArrayList = new ArrayList<>();
-        categoriesArrayList.add(new Categories(1,"Tên danh mục1",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(2,"Tên danh mục2",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(3,"Tên danh mục3",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(4,"Tên danh mục4",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(5,"Tên danh mục5",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(7,"Tên danh mục6",R.drawable.trsua));
-        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,this,LinearLayoutManager.HORIZONTAL);
-        categories.setAdapter(categoriesAdapter);
+        loadCategoriesRecyclerView(layoutManager);
 
 //        stores = findViewById(R.id.StoresRecyclerView);
 //        stores.setHasFixedSize(true);
@@ -98,7 +87,7 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         stores1.setHasFixedSize(true);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         stores1.setLayoutManager(layoutManager2);
-        stores1.setAdapter(categoriesAdapter);
+        stores1.setAdapter(storesAdapter);
 
         ViewPager viewPager = findViewById(R.id.viewPager);
         BannerAdapter adapter = new BannerAdapter(this);
