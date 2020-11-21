@@ -1,6 +1,12 @@
 package com.example.vongship_android.Activity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +17,7 @@ import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
@@ -38,6 +45,43 @@ public class ProductDetailsActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        loadProductRecyclerView(layoutManager)                                                                                                                        ;
+        loadProductRecyclerView(layoutManager);
+        Button button_buy = findViewById(R.id.button_buy);
+        button_buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(ProductDetailsActivity.this,R.style.BottomSheetDialogTheme);
+                final View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet_cards,(LinearLayout)findViewById(R.id.bottom_sheet));
+                bottomSheetDialog.setContentView(bottomSheetView);
+                bottomSheetDialog.show();
+                bottomSheetView.findViewById(R.id.remove_one).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        TextView currentQuantityText = bottomSheetView.findViewById(R.id.quantity);
+                        int currentQuantity = Integer.parseInt((String) currentQuantityText.getText());
+                        if(currentQuantity > 1) {
+                            int newQuantity = currentQuantity - 1;
+                            currentQuantityText.setText(String.valueOf(newQuantity));
+                        }
+                    }
+                });
+                bottomSheetView.findViewById(R.id.add_one);
+                bottomSheetView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        TextView currentQuantityText = bottomSheetView.findViewById(R.id.quantity);
+                        int currentQuantity = Integer.parseInt((String) currentQuantityText.getText());
+                        int newQuantity = currentQuantity + 1;
+                        currentQuantityText.setText(String.valueOf(newQuantity));
+                    }
+                });
+                bottomSheetView.findViewById(R.id.addtoCard).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bottomSheetDialog.hide();
+                    }
+                });
+            }
+        });
     }
 }
