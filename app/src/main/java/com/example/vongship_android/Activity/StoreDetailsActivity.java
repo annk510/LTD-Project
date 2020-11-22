@@ -17,7 +17,7 @@ public class StoreDetailsActivity extends AppCompatActivity {
     ArrayList<Product> productArrayList;
     ProductAdapter productAdapter;
     void loadProductRecyclerView(LinearLayoutManager layoutManager){
-        product = findViewById(R.id.listStore);
+        product = findViewById(R.id.listProductInStore);
         product.setHasFixedSize(true);
         product.setLayoutManager(layoutManager);
         productArrayList = new ArrayList<>();
@@ -34,7 +34,7 @@ public class StoreDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_details);
+        setContentView(R.layout.activity_store_details);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         loadProductRecyclerView(layoutManager);
     }

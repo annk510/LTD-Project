@@ -34,9 +34,13 @@ import com.example.vongship_android.Adapter.CategoriesAdapter;
 import com.example.vongship_android.Adapter.BannerAdapter;
 import com.example.vongship_android.Activity.MapsActivity;
 
+import com.example.vongship_android.Adapter.ProductAdapter;
+import com.example.vongship_android.Adapter.SectionsAdapter;
 import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.DTO.Categories;
+import com.example.vongship_android.DTO.Product;
+import com.example.vongship_android.DTO.Section;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
 
@@ -52,8 +56,8 @@ import static com.example.vongship_android.R.id.location_click;
 public class HomeFragment extends Fragment {
     LinearLayout location;
     CardView gotoFoodDelivery;
-    ArrayList<Store> storeArrayList;
-    StoresAdapter storesAdapter;
+    ArrayList<Section> sectionArrayList;
+    SectionsAdapter sectionsAdapter;
 
     @SuppressLint("WrongViewCast")
     @Nullable
@@ -90,20 +94,57 @@ public class HomeFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE,d MMMM, ''yyyy");
         String currentDateandTime = sdf.format(new Date());
         txtDate.setText(currentDateandTime);
-
-        RecyclerView recyclerView =root.findViewById(R.id.CuaHangRecyclerView);
-        RecyclerView recyclerView1 =root.findViewById(R.id.CuaHangKMRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView1.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
-        LinearLayoutManager layoutManager1 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        RecyclerView recyclerView =root.findViewById(R.id.sectionsInHomeFragment);
+        loadSections();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView1.setLayoutManager(layoutManager1);
-        CuaHangMoi();
-        recyclerView.setAdapter(storesAdapter);
-        recyclerView1.setAdapter(storesAdapter);
+        recyclerView.setAdapter(sectionsAdapter);
 
         return root;
+    }
+    void loadSections(){
+        sectionArrayList = new ArrayList<>();
+
+        //Section danh mục sản phẩm
+        Section section3 = new Section();
+        section3.setHeaderTitle("Danh mục sản phẩm");
+        ArrayList<Categories> categoriesArrayList = new ArrayList<>();
+        categoriesArrayList.add(new Categories(1,"Cơm",R.drawable.comga));
+        categoriesArrayList.add(new Categories(2,"Bánh Mỳ",R.drawable.banhmy));
+        categoriesArrayList.add(new Categories(3,"Trà Sữa",R.drawable.trasua));
+        categoriesArrayList.add(new Categories(4,"Cà Phê",R.drawable.caphe));
+        categoriesArrayList.add(new Categories(5,"Nước Giải Khát",R.drawable.rauma));
+        categoriesArrayList.add(new Categories(7,"Bánh Cuốn",R.drawable.banhep));
+        section3.setListContent(categoriesArrayList);
+        sectionArrayList.add(section3);
+
+        //Section cửa hàng gần đây
+        Section section = new Section();
+        section.setHeaderTitle("Cửa hàng gần đây");
+        ArrayList<Store> storeArrayList = new ArrayList<>();
+        storeArrayList.add(new Store("Cơm Chiên Hảo Hảo","1.3 km","Sale 11%",R.drawable.comchien));
+        storeArrayList.add(new Store("Bánh Cuốn Lê Duẫn","2.5 km","Freeship 3km",R.drawable.banhcuon));
+        storeArrayList.add(new Store("Milk Tea & Coffe - Bông","500 m","Sale 17 %",R.drawable.trasua));
+        storeArrayList.add(new Store("Bánh Ép Huế Kim Ngân","700 m","Freeship 2km",R.drawable.banhep));
+        storeArrayList.add(new Store("Cơm Gà Trần Cao Vân","300 m","Sale 15%",R.drawable.comga));
+        storeArrayList.add(new Store("Quán Ngố - Nước Dừa","2 km","Freeship 2km",R.drawable.nuocdua));
+        section.setListContent(storeArrayList);
+        sectionArrayList.add(section);
+        //Section cửa hàng mới
+        Section section1 = new Section();
+        section1.setHeaderTitle("Cửa hàng mới");
+        ArrayList<Store> storeArrayList1 = new ArrayList<>();
+        storeArrayList1.add(new Store("Cơm Chiên Hảo Hảo","1.3 km","Sale 11%",R.drawable.comchien));
+        storeArrayList1.add(new Store("Bánh Cuốn Lê Duẫn","2.5 km","Freeship 3km",R.drawable.banhcuon));
+        storeArrayList1.add(new Store("Milk Tea & Coffe - Bông","500 m","Sale 17 %",R.drawable.trasua));
+        storeArrayList1.add(new Store("Bánh Ép Huế Kim Ngân","700 m","Freeship 2km",R.drawable.banhep));
+        storeArrayList1.add(new Store("Cơm Gà Trần Cao Vân","300 m","Sale 15%",R.drawable.comga));
+        storeArrayList1.add(new Store("Quán Ngố - Nước Dừa","2 km","Freeship 2km",R.drawable.nuocdua));
+        section1.setListContent(storeArrayList1);
+        sectionArrayList.add(section1);
+
+        sectionsAdapter = new SectionsAdapter(sectionArrayList,getActivity());
+
     }
     private void makeRequest() {
         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -112,22 +153,7 @@ public class HomeFragment extends Fragment {
         getActivity().finish();
     }
 
-    public void CuaHangMoi(){
 
-
-        storeArrayList = new ArrayList<>();
-        storeArrayList.add(new Store("Cơm Chiên Trần Cao Vân","1 km","Freeship 2km",R.drawable.comchien));
-        storeArrayList.add(new Store("Milk Tea & Coffee Bông","500 m","Freeship 2km",R.drawable.trachanh));
-        storeArrayList.add(new Store("Nước Giải khát Cao Thắng","100 m","Freeship 2km",R.drawable.rauma));
-        storeArrayList.add(new Store("Bánh Ép Huế - Hải Phòng","1.5 km","Freeship 2km",R.drawable.banhep));
-        storeArrayList.add(new Store("Bánh Mỳ Nướng Chang Chang","150 m","Freeship 2km",R.drawable.banhmy));
-        storeArrayList.add(new Store("The Books Coffee Library","300m","Freeship 2km",R.drawable.caphe));
-        storesAdapter = new StoresAdapter(storeArrayList,getActivity(),LinearLayoutManager.HORIZONTAL);
-
-    }
-    public void CuaHangKM(){
-
-    }
 
 
     public String VT() {
