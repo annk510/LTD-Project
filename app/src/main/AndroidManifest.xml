@@ -9,8 +9,8 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="LoshipFake"
-        android:roundIcon="@drawable/lgapp"
+        android:label="LoshipLTDD"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 

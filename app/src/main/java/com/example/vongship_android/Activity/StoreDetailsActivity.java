@@ -1,8 +1,11 @@
 package com.example.vongship_android.Activity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,5 +40,27 @@ public class StoreDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_details);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         loadProductRecyclerView(layoutManager);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarStoreDetail);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.abc);    //logo muốn hiện thị trên action bar
+        actionBar.setDisplayUseLogoEnabled(true);
+
+        actionBar.setDisplayHomeAsUpEnabled(true);//của nút quay lại trên toolbar, có cái func ở dưới nữa.
+
+        actionBar.setTitle("");
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

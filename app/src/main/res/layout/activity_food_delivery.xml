@@ -134,7 +134,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat"
                         android:textColor="#000000"
-                        android:text="Cửa hàng gần đây"
+                        android:text="CỬA HÀNG GẦN ĐÂY"
                         android:textSize="18sp"
                         tools:textStyle="bold" />
                     <TextView
@@ -167,7 +167,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat"
                         android:textColor="#000000"
-                        android:text="Cửa hàng mới"
+                        android:text="CỬA HÀNG MỚI"
                         android:textSize="18sp"
                         tools:textStyle="bold" />
                     <TextView

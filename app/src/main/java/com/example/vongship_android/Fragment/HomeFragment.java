@@ -104,23 +104,9 @@ public class HomeFragment extends Fragment {
     }
     void loadSections(){
         sectionArrayList = new ArrayList<>();
-
-        //Section danh mục sản phẩm
-        Section section3 = new Section();
-        section3.setHeaderTitle("Danh mục sản phẩm");
-        ArrayList<Categories> categoriesArrayList = new ArrayList<>();
-        categoriesArrayList.add(new Categories(1,"Cơm",R.drawable.comga));
-        categoriesArrayList.add(new Categories(2,"Bánh Mỳ",R.drawable.banhmy));
-        categoriesArrayList.add(new Categories(3,"Trà Sữa",R.drawable.trasua));
-        categoriesArrayList.add(new Categories(4,"Cà Phê",R.drawable.caphe));
-        categoriesArrayList.add(new Categories(5,"Nước Giải Khát",R.drawable.rauma));
-        categoriesArrayList.add(new Categories(7,"Bánh Cuốn",R.drawable.banhep));
-        section3.setListContent(categoriesArrayList);
-        sectionArrayList.add(section3);
-
         //Section cửa hàng gần đây
         Section section = new Section();
-        section.setHeaderTitle("Cửa hàng gần đây");
+        section.setHeaderTitle("CỬA HÀNG MỚI");
         ArrayList<Store> storeArrayList = new ArrayList<>();
         storeArrayList.add(new Store("Cơm Chiên Hảo Hảo","1.3 km","Sale 11%",R.drawable.comchien));
         storeArrayList.add(new Store("Bánh Cuốn Lê Duẫn","2.5 km","Freeship 3km",R.drawable.banhcuon));
@@ -132,7 +118,7 @@ public class HomeFragment extends Fragment {
         sectionArrayList.add(section);
         //Section cửa hàng mới
         Section section1 = new Section();
-        section1.setHeaderTitle("Cửa hàng mới");
+        section1.setHeaderTitle("CỬA HÀNG KHUYẾN MÃI");
         ArrayList<Store> storeArrayList1 = new ArrayList<>();
         storeArrayList1.add(new Store("Cơm Chiên Hảo Hảo","1.3 km","Sale 11%",R.drawable.comchien));
         storeArrayList1.add(new Store("Bánh Cuốn Lê Duẫn","2.5 km","Freeship 3km",R.drawable.banhcuon));
