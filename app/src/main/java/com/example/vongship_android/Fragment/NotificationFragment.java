@@ -1,12 +1,15 @@
 package com.example.vongship_android.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.vongship_android.Activity.NotificationsDetailActivity;
 import com.example.vongship_android.R;
 
 public class NotificationFragment extends Fragment {
@@ -35,8 +39,15 @@ public class NotificationFragment extends Fragment {
         listView = root.findViewById(R.id.ListView);
         NotificationFragment.MyAdapter adapter = new NotificationFragment.MyAdapter( getActivity(), mTitle,mDescription,images);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent myIntent = new Intent(getActivity(), NotificationsDetailActivity.class);
+                NotificationFragment.this.startActivity(myIntent);
+            }
+        });
         return root;
-        };
+        }
     class MyAdapter extends ArrayAdapter<String> {
         Context context;
         String rTitle[];
