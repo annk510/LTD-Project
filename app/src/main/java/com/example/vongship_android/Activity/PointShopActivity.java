@@ -1,8 +1,10 @@
 package com.example.vongship_android.Activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.ListView;
 
@@ -19,6 +21,7 @@ public class PointShopActivity extends AppCompatActivity {
     private GridView gridView;
     ArrayList<ProductPoint> listProduct;
     ProductPointAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +29,28 @@ public class PointShopActivity extends AppCompatActivity {
         anhXa();
         adapter = new ProductPointAdapter(this, R.layout.item_point_shop, listProduct);
         gridView.setAdapter(adapter);
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar_notification_detail);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("");
+        actionBar.setLogo(R.drawable.lopoint);
     }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: // nút back
+                onBackPressed();
+                return true;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public void anhXa() {
         gridView = (GridView) findViewById(R.id.grid_lopoint);
         listProduct = new ArrayList<>();

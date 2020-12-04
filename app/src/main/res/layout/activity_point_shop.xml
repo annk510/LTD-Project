@@ -6,24 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.PointShopActivity">
-    <LinearLayout
-        android:background="#FFF"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_notification_detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:padding="5dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_back" />
-        <ImageView
-            android:paddingRight="50dp"
-            android:src="@drawable/lopoint"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            />
-    </LinearLayout>
+        android:layout_height="40dp"
+        android:background="#fff" />
     <GridView
         android:id="@+id/grid_lopoint"
         android:scrollbars="none"
