@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 
 import com.example.vongship_android.Activity.CardManageActivity;
+import com.example.vongship_android.Activity.DetailProfileFeature;
+import com.example.vongship_android.Activity.DetailProfileStore;
 import com.example.vongship_android.Activity.FavoriteShopActivity;
 import com.example.vongship_android.Activity.LoshipCommunityActivity;
 import com.example.vongship_android.Activity.QuestionActivity;
@@ -30,6 +32,8 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
     private TextView tv_favorShop, tv_cardManage, tv_question, tv_comment;
+    private TextView txtStore;
+    private TextView txtFeature;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,6 +75,24 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LoshipCommunityActivity.class);
+                ProfileFragment.this.startActivity(intent);
+            }
+        });
+
+        txtStore = (TextView)root.findViewById(R.id.detailstore);
+        txtStore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DetailProfileStore.class);
+                ProfileFragment.this.startActivity(intent);
+            }
+        });
+
+        txtFeature = (TextView)root.findViewById(R.id.detailfeature);
+        txtFeature.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DetailProfileFeature.class);
                 ProfileFragment.this.startActivity(intent);
             }
         });
