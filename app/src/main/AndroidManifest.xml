@@ -36,6 +36,12 @@
         <activity android:name=".Activity.CategoryDetailsActivity" />
         <activity android:name=".Activity.StoreDetailsActivity" />
         <activity android:name=".Activity.ProductDetailsActivity" />
+        <activity android:name=".Activity.RecommendAppActivity" />
+        <activity android:name=".Activity.FavoriteShopActivity" />
+        <activity android:name=".Activity.QuestionActivity" />
+        <activity android:name=".Activity.PointShopActivity" />
+        <activity android:name=".Activity.CardManageActivity" />
+        <activity android:name=".Activity.LoshipCommunityActivity" />
         <activity android:name=".Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

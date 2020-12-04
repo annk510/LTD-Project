@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ECECEC"
+    tools:context=".Activity.RecommendAppActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_notification_detail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#fff"
+            app:contentInsetStart="110dp" />
+    </LinearLayout>
+    <androidx.core.widget.NestedScrollView
+        android:fillViewport="true"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/recommendapp"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:scaleType="fitXY"/>
+            <LinearLayout
+                android:background="#fff"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Giới thiệu bạn bè, nhận ngay 10.000đ"/>
+                <TextView
+                    android:layout_marginBottom="10dp"
+                    android:paddingHorizontal="15dp"
+                    android:text="Hãy rủ bạn bè cùng tham gia với 3 bước đơn giản:\n1. Tải app Loship.\n2. Đặt hàng lần đầu tiên với mã giới thiệu của bạn, giảm ngay 10.000đ.\n3. Đơn hàng thành công, bạn nhận được 10.000đ!"
+                    android:textSize="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_marginBottom="5dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:paddingHorizontal="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dùng mã giới thiệu của bạn"/>
+                <LinearLayout
+                    android:weightSum="5"
+                    android:paddingHorizontal="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:layout_weight="4.9"
+                        android:padding="5dp"
+                        android:textSize="18sp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tv_border"
+                        android:text="1HCU4" />
+
+                    <Button
+                        android:id="@+id/bt_copy"
+                        android:layout_weight="0.1"
+                        android:paddingLeft="5dp"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_gray"
+                        android:drawableLeft="@drawable/ic_copy"
+                        android:textAllCaps="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Sao chép"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/bt_invite"
+                    android:background="@drawable/button_red_2"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Mời thêm bạn"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:background="#fff"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:background="@drawable/radius_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đổi thưởng ngay"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:textColor="#000"/>
+                    <TextView
+                        android:textSize="16dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="#000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rất nhiều phần thưởng\nđang chờ đợi bạn"/>
+                    <Button
+                        android:id="@+id/bt_doi"
+                        android:textSize="18dp"
+                        android:textAllCaps="false"
+                        android:layout_gravity="right"
+                        android:textStyle="bold"
+                        android:textColor="#FFF"
+                        android:background="@drawable/button_red_2"
+                        android:layout_width="70dp"
+                        android:layout_height="40dp"
+                        android:text="Đổi"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="#fff"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#000"
+                    android:background="@drawable/borderbot"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bạn bè đã dùng mã của bạn"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+                <ListView
+                    android:id="@+id/lv_recommend_fr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

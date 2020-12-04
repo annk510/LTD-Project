@@ -94,11 +94,12 @@
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/tv_comment"
             android:drawablePadding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/boderbot"
+            android:background="@drawable/borderbot"
             android:drawableLeft="@drawable/ic_emotion"
             android:drawableRight="@drawable/ic_forward"
             android:fontFamily="@font/montserrat"
@@ -108,10 +109,11 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/favor_shop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/boderbot"
+            android:background="@drawable/borderbot"
             android:drawableLeft="@drawable/ic_favorite"
             android:drawableRight="@drawable/ic_forward"
             android:drawablePadding="5dp"
@@ -125,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/boderbot"
+            android:background="@drawable/borderbot"
             android:drawableLeft="@drawable/ic_edit"
             android:drawableRight="@drawable/ic_forward"
             android:drawablePadding="5dp"
@@ -136,10 +138,11 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/card_manage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/boderbot"
+            android:background="@drawable/borderbot"
             android:drawableLeft="@drawable/ic_card"
             android:drawableRight="@drawable/ic_forward"
             android:drawablePadding="5dp"
@@ -150,10 +153,11 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/boderbot"
+            android:background="@drawable/borderbot"
             android:drawableLeft="@drawable/ic_help"
             android:drawableRight="@drawable/ic_forward"
             android:drawablePadding="5dp"
@@ -167,7 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/boderbot"
+            android:background="@drawable/borderbot"
             android:drawableLeft="@drawable/ic_textsms"
             android:drawableRight="@drawable/ic_forward"
             android:drawablePadding="5dp"
@@ -181,7 +185,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/boderbot"
+            android:background="@drawable/borderbot"
             android:drawableLeft="@drawable/ic_textsms"
             android:drawableRight="@drawable/ic_forward"
             android:drawablePadding="5dp"
@@ -195,7 +199,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@drawable/boderbot"
+            android:background="@drawable/borderbot"
             android:drawableLeft="@drawable/ic_phone"
             android:drawableRight="@drawable/ic_forward"
             android:drawablePadding="5dp"
@@ -219,7 +223,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/listOption"
             android:layout_margin="5dp"
-            android:background="@drawable/boderbot"
+            android:background="@drawable/borderbot"
             android:drawableLeft="@drawable/ic_logout"
             android:drawablePadding="5dp"
             android:fontFamily="@font/montserrat"

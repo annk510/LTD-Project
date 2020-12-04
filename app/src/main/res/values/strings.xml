@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name"></string>
     <string name="title_activity_maps">Map</string>
+    <string name="question_1">Trong quá trình shipper Loship thực hiện đơn hàng, ứng dụng đều nhận được thông báo để Anh/Chị theo dõi tình trạng đơn hàng như shipper đã tới cửa và tiến hành mua và giao món đến anh, chị.</string>
+    <string name="question_2">Loship luôn yêu cầu các shipper thực hiện giao hàng đến Anh/Chị trọn vẹn khi tiếp nhận đơn hàng.\ntrong trường hợp xảy ra sự cố, shipper sẽ thông báo cho Loship hoặc bàn giao đơn hàng cho shipper khác.\nCác chiến binh không hoàn thành nhiệm vụ giao hàng đến Anh/Chị sẽ phải chịu xử phạt theo qui định của Loship.</string>
+    <string name="question_3">Trường hợp đơn hàng đã được thanh toán  online, Anh/Chị đừng quá lo lắng nếu như đã trót thanh toán thêm. Trước hết, Anh chị vui lòng thông báo qua email: hotroloship@lozi.vn hoặc Fanpage Loship để được hỗ trợ hoàn trả vào tài khoản Anh/Chị nhé.</string>
 </resources>
