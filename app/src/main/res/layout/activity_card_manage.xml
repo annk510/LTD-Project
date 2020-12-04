@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECECEC"
+    android:orientation="vertical"
+    tools:context=".Activity.CardManageActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_notification_detail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#fff"
+                app:contentInsetStart="110dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFF"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thêm thẻ"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_add_24"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Thẻ quốc tế (Visa/Master/JCB)"
+                android:textColor="#3A3A3A"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_add_24"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="ATM nội địa/ Internet Banking"
+                android:textColor="#3A3A3A"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <ImageView
+            android:scaleType="fitXY"
+            android:src="@drawable/wallet"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
+        <TextView
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bạn chưa lưu thẻ nào"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+        <TextView
+            android:textColor="#717171"
+            android:paddingHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thẻ của bạn sẽ xuất hiện ở đây. Bạn có thể chọn nhanh thẻ để thanh toán khi đặt hàng mà không cần cập nhật lại thông tin."
+            android:textSize="18sp"/>
+    </LinearLayout>
+</LinearLayout>

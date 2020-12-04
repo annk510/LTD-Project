@@ -94,6 +94,7 @@ public class HomeFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE,d MMMM, ''yyyy");
         String currentDateandTime = sdf.format(new Date());
         txtDate.setText(currentDateandTime);
+
         RecyclerView recyclerView =root.findViewById(R.id.sectionsInHomeFragment);
         loadSections();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
