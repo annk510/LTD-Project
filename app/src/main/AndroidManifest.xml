@@ -13,7 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Activity.IdCardActivity"></activity>
+        <activity android:name=".Activity.ChangePasswordActivity" />
+        <activity android:name=".Activity.ChangePhoneActivity" />
+        <activity android:name=".Activity.ChangeProfileActivity" />
+        <activity android:name=".Activity.PersonalFileActivity" />
+        <activity android:name=".Activity.ContactLoshipActivity" />
 
         <service android:name=".service.MyFirebaseService">
             <intent-filter>
@@ -30,7 +35,7 @@
         <activity
             android:name=".Activity.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Activity.NotificationsDetailActivity"/>
+        <activity android:name=".Activity.NotificationsDetailActivity" />
         <activity android:name=".Activity.DetailProfileStore" />
         <activity android:name=".Activity.DetailProfileFeature" />
         <activity android:name=".Activity.ForgotPasswordsActivity" />
@@ -47,7 +52,6 @@
         <activity android:name=".Activity.CardManageActivity" />
         <activity android:name=".Activity.LoshipCommunityActivity" />
         <activity android:name=".Activity.SplashActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

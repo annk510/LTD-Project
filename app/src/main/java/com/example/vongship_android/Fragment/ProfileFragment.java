@@ -11,15 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import com.example.vongship_android.Activity.CardManageActivity;
+import com.example.vongship_android.Activity.ChangeProfileActivity;
+import com.example.vongship_android.Activity.ContactLoshipActivity;
 import com.example.vongship_android.Activity.DetailProfileFeature;
 import com.example.vongship_android.Activity.DetailProfileStore;
 import com.example.vongship_android.Activity.FavoriteShopActivity;
 import com.example.vongship_android.Activity.LoshipCommunityActivity;
+import com.example.vongship_android.Activity.PersonalFileActivity;
 import com.example.vongship_android.Activity.QuestionActivity;
 import com.example.vongship_android.Activity.RecommendAppActivity;
 import com.example.vongship_android.Class.DownloadImageTask;
@@ -31,14 +33,41 @@ import com.google.firebase.auth.FirebaseUser;
 public class ProfileFragment extends Fragment {
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
-    private TextView tv_favorShop, tv_cardManage, tv_question, tv_comment;
+    private TextView tv_favorShop, tv_cardManage, tv_question, tv_comment, textView_contact,text_update;
     private TextView txtStore;
     private TextView txtFeature;
+    private Button button_update;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile,container,false);
         TextView txt_name= (TextView) root.findViewById(R.id.nameTv);
+        textView_contact=(TextView) root.findViewById(R.id.contact);
+        text_update=(TextView) root.findViewById(R.id.tv_update);
+        button_update= (Button) root.findViewById(R.id.bt_update);
+        button_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(), PersonalFileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        textView_contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(), ContactLoshipActivity.class);
+                startActivity(intent);
+            }
+        });
+        text_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(), ChangeProfileActivity.class);
+                startActivity(intent);
+            }
+        });
         root.findViewById(R.id.recommend).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

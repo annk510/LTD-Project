@@ -43,6 +43,17 @@
                 android:text="0383.422.211"
                 android:textColor="#000000"
                 android:textSize="16sp" />
+            <Button
+                android:id="@+id/bt_update"
+                android:layout_width="110dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/phoneTv"
+                android:layout_marginTop="-1dp"
+                android:background="@drawable/button_red2"
+                android:text="Cập nhật hồ sơ"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -124,6 +135,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/tv_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -198,6 +210,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
