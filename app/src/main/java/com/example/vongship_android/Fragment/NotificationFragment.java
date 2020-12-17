@@ -60,7 +60,7 @@ public class NotificationFragment extends Fragment {
     private void Anhxa() {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("notification")
+        db.collection("Notifications")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -70,9 +70,9 @@ public class NotificationFragment extends Fragment {
                             fragArrayList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 NotificationFrag notifi = new NotificationFrag();
-                                notifi.setmTitle(document.get("Title").toString());
-                                notifi.setmDescription(document.get("Description").toString());
-                                notifi.setImages(document.get("Img").toString());
+                                notifi.setmTitle(document.get("title").toString());
+                                notifi.setmDescription(document.get("description").toString());
+                                notifi.setImages(document.get("images").toString());
 
                                 fragArrayList.add(notifi);
                             }

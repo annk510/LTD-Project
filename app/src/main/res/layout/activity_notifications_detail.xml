@@ -99,7 +99,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/list_in_detail_notification"/>
+                        android:id="@+id/list_store_vertical"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
