@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.DTO.NotificationFrag;
 import com.example.vongship_android.R;
 
@@ -43,16 +44,14 @@ public class NotificationFragAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater inflater=(LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         view=inflater.inflate(layout,null);
-
+        NotificationFrag notificationFrag = notificationFragList.get(i);
         TextView txtTitle=(TextView) view.findViewById(R.id.text);
         TextView txtDescription=(TextView)view.findViewById(R.id.time);
-        ImageView images=(ImageView)view.findViewById(R.id.image);
 
-        NotificationFrag notificationFrag = notificationFragList.get(i);
 
+        new DownloadImageTask((ImageView) view.findViewById(R.id.image)).execute(notificationFrag.getImages());
         txtTitle.setText(notificationFrag.getmTitle());
         txtDescription.setText(notificationFrag.getmDescription());
-        images.setImageResource(notificationFrag.getImages());
         return view;
     }
 }

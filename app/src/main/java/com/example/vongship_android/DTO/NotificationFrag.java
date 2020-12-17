@@ -3,9 +3,12 @@ package com.example.vongship_android.DTO;
 public class NotificationFrag {
     private String mTitle;
     private String  mDescription;
-    private int images;
+    private String images;
 
-    public NotificationFrag(String mTitle, String mDescription, int images) {
+    public NotificationFrag() {
+    }
+
+    public NotificationFrag(String mTitle, String mDescription, String images) {
         this.mTitle = mTitle;
         this.mDescription = mDescription;
         this.images = images;
@@ -27,11 +30,11 @@ public class NotificationFrag {
         this.mDescription = mDescription;
     }
 
-    public int getImages() {
+    public String getImages() {
         return images;
     }
 
-    public void setImages(int images) {
+    public void setImages(String images) {
         this.images = images;
     }
 }

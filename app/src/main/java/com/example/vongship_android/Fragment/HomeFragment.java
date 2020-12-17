@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.vongship_android.Activity.FoodDeliveryActivity;
+import com.example.vongship_android.Activity.LoginActivity;
+import com.example.vongship_android.Activity.MainActivity;
 import com.example.vongship_android.Adapter.CategoriesAdapter;
 import com.example.vongship_android.Adapter.BannerAdapter;
 import com.example.vongship_android.Activity.MapsActivity;
@@ -43,6 +46,11 @@ import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.DTO.Section;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -52,6 +60,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.example.vongship_android.R.id.location_click;
+import static com.example.vongship_android.R.id.txt_date;
 
 public class HomeFragment extends Fragment {
     LinearLayout location;
@@ -79,8 +88,8 @@ public class HomeFragment extends Fragment {
                 || permission_coarse_loc != PackageManager.PERMISSION_GRANTED) {
             makeRequest();
         }
-        TextView txtAdress =root.findViewById(R.id.txt_Address);
-        TextView txtDate =root.findViewById(R.id.txt_date);
+        final TextView txtAdress =root.findViewById(R.id.txt_Address);
+        final TextView txtDate =root.findViewById(R.id.txt_date);
         if(VT() != null){
             txtAdress.setText(VT());
         }else {
@@ -91,15 +100,16 @@ public class HomeFragment extends Fragment {
         new DownloadImageTask((ImageView) root.findViewById(R.id.IMGprofile_home))
                 .execute("https://firebasestorage.googleapis.com/v0/b/doanltdd-60a15.appspot.com/o/Image%2FprofileImage.jpg?alt=media&token=40d48a63-1ac3-4e2c-946d-4b8515f79c62");
 
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE,d MMMM, ''yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE,d MMMM, yyyy");
         String currentDateandTime = sdf.format(new Date());
-        txtDate.setText(currentDateandTime);
+       txtDate.setText(currentDateandTime);
 
         RecyclerView recyclerView =root.findViewById(R.id.sectionsInHomeFragment);
         loadSections();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(sectionsAdapter);
+
 
         return root;
     }

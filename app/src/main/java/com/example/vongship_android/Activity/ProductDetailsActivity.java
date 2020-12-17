@@ -1,6 +1,7 @@
 package com.example.vongship_android.Activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,27 +22,59 @@ import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 public class ProductDetailsActivity  extends AppCompatActivity {
     RecyclerView products;
     ArrayList<Product> productArrayList;
-    ProductAdapter productAdapter;
+     ProductAdapter productAdapter;
     void loadProductRecyclerView(LinearLayoutManager layoutManager){
         products = findViewById(R.id.listProductInStore);
         products.setHasFixedSize(true);
         products.setLayoutManager(layoutManager);
-        productArrayList = new ArrayList<>();
-        productArrayList.add(new Product("1","Nước Dừa Trần Cao Vân","20.000 VNĐ","Freeship 2km",R.drawable.nuocdua));
-        productArrayList.add(new Product("2","Cơm Chiên Dương Châu","50.000 VNĐ","Sale 10%",R.drawable.comchien));
-        productArrayList.add(new Product("3","Cà Phê Trung Nguyên","25.000 VNĐ","Freeship 1.5km",R.drawable.caphe));
-        productArrayList.add(new Product("4","Bánh Ép Huế","15.000 VNĐ","Freeship 2km",R.drawable.banhep));
-        productArrayList.add(new Product("5","Trà Sữa Trân Châu","35.000 VNĐ","Sale 5%",R.drawable.trasua));
-        productArrayList.add(new Product("6","Trà Chanh","20.000 VNĐ","Freeship 2km",R.drawable.trachanh));
-        productAdapter = new ProductAdapter(productArrayList,this,LinearLayoutManager.VERTICAL);
-        products.setAdapter(productAdapter);
+
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Product")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            productArrayList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Product product = new Product();
+                                product.setProductid(document.getId());
+                                product.setProductname(document.get("name").toString());
+                                product.setDescription(document.get("description").toString());
+                                product.setPrice(document.get("price").toString());
+                                product.setImg(R.drawable.trasua);
+                                productArrayList.add(product);
+                            }
+                            productAdapter = new ProductAdapter(productArrayList,ProductDetailsActivity.this,LinearLayoutManager.VERTICAL);
+                            products.setAdapter(productAdapter);
+                        } else {
+                            Log.w("adad", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+
+//        productArrayList.add(new Product("1","Nước Dừa Trần Cao Vân","20.000 VNĐ","Freeship 2km",R.drawable.nuocdua));
+//        productArrayList.add(new Product("2","Cơm Chiên Dương Châu","50.000 VNĐ","Sale 10%",R.drawable.comchien));
+//        productArrayList.add(new Product("3","Cà Phê Trung Nguyên","25.000 VNĐ","Freeship 1.5km",R.drawable.caphe));
+//        productArrayList.add(new Product("4","Bánh Ép Huế","15.000 VNĐ","Freeship 2km",R.drawable.banhep));
+//        productArrayList.add(new Product("5","Trà Sữa Trân Châu","35.000 VNĐ","Sale 5%",R.drawable.trasua));
+//        productArrayList.add(new Product("6","Trà Chanh","20.000 VNĐ","Freeship 2km",R.drawable.trachanh));
+
 
     }
     @Override

@@ -1,8 +1,11 @@
 package com.example.vongship_android.Activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,12 +17,17 @@ import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.DTO.Categories;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 public class CategoryDetailsActivity extends AppCompatActivity {
     RecyclerView stores;
-    ArrayList<Store> storeArrayList;
+    public ArrayList<Store> storeArrayList;
     StoresAdapter storesAdapter;
 
     void loadStoresRecyclerView(LinearLayoutManager layoutManager) {
@@ -27,6 +35,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         stores.setHasFixedSize(true);
         stores.setLayoutManager(layoutManager);
         storeArrayList = new ArrayList<>();
+        final TextView txt1=  findViewById(R.id.txt_location_category);
 
         storeArrayList.add(new Store("Cơm Chiên Hảo Hảo","1.3 km","Sale 11%",R.drawable.comchien));
         storeArrayList.add(new Store("Bánh Cuốn Lê Duẫn","2.5 km","Freeship 3km",R.drawable.banhcuon));
@@ -35,7 +44,6 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         storeArrayList.add(new Store("Cơm Gà Trần Cao Vân","300 m","Sale 15%",R.drawable.comga));
         storeArrayList.add(new Store("Quán Ngố - Nước Dừa","2 km","Freeship 2km",R.drawable.nuocdua));
         storesAdapter = new StoresAdapter(storeArrayList,this,LinearLayoutManager.VERTICAL);
-
         stores.setAdapter(storesAdapter);
 
     }

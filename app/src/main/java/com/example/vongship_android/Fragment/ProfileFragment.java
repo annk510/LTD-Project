@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +27,13 @@ import com.example.vongship_android.Activity.QuestionActivity;
 import com.example.vongship_android.Activity.RecommendAppActivity;
 import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class ProfileFragment extends Fragment {
@@ -42,7 +48,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile,container,false);
-        TextView txt_name= (TextView) root.findViewById(R.id.nameTv);
+        final TextView txt_name= (TextView) root.findViewById(R.id.nameTv);
         textView_contact=(TextView) root.findViewById(R.id.contact);
         text_update=(TextView) root.findViewById(R.id.tv_update);
         button_update= (Button) root.findViewById(R.id.bt_update);
@@ -133,6 +139,7 @@ public class ProfileFragment extends Fragment {
 
             txt_name.setText(email);
         }
+        
         new DownloadImageTask((ImageView) root.findViewById(R.id.profile_image))
                 .execute("https://firebasestorage.googleapis.com/v0/b/doanltdd-60a15.appspot.com/o/Image%2FprofileImage.jpg?alt=media&token=40d48a63-1ac3-4e2c-946d-4b8515f79c62");
         return root;
