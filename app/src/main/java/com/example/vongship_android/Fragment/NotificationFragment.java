@@ -84,13 +84,5 @@ public class NotificationFragment extends Fragment {
                     }
                 });
 
-//        fragArrayList.add(new NotificationFrag("Chiều rồi!Trà sữa nào bạn ơi! Đồng giá 17K, freeship nữa nà", "4 phút", R.drawable.trsua));
-//        fragArrayList.add(new NotificationFrag("Sáng nay ăn gì, cứ lên Loship, đặt ngay thôi nào, đồng giá 10K lại free ship tận nhà", "15 phút", R.drawable.ansang));
-//        fragArrayList.add(new NotificationFrag(" Yêu một người là khi \n Mình nghĩ về người đó \n Cứ mỗi sáng nhắn nhỏ \n Loship rồi hay chưa?", "18 phút", R.drawable.icon_loship));
-//        fragArrayList.add(new NotificationFrag("Faker đã hoàn thành đơn hàng đầu tiên với mã giới thiệu của bạn. Bạn nhận được 10.000đ", "1 giờ", R.drawable.avatar_meo));
-//        fragArrayList.add(new NotificationFrag("Chiều nay uống gì nhỉ, lên Loship liền đồng giá 29K mà còn được freeship tận nhà nè", "19 giờ", R.drawable.douong));
-//        fragArrayList.add(new NotificationFrag(" Nụ cười ươm tia nắng \n Ánh mắt đầy ngọt ngào \n Loship nhanh đi chớ \n Anh đang chờ sáng nay", "23 giờ", R.drawable.icon_loship));
-//        fragArrayList.add(new NotificationFrag("Tuy vô lý hết sức nhưng TẶNG mã LAMQUEN là điều không thể ngờ. Giảm 20.000đ cho đơn hàng đầu tiên nhé! Lại còn được Freeship nữa!", "1 ngày", R.drawable.icon_loship));
-//        fragArrayList.add(new NotificationFrag("Loship chưa thấy bạn đặt? Tặng mã THOMNGON, giảm 20.000đ khi đặt đơn hàng đầu tiên.", "1 ngày", R.drawable.icon_loship));
     }
 }

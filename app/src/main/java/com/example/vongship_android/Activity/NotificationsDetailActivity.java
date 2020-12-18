@@ -17,8 +17,6 @@ import java.util.ArrayList;
 
 public class NotificationsDetailActivity extends AppCompatActivity {
     RecyclerView notifications;
-//    ArrayList<NotificationDetails> notificationDetailsArrayList;
-//    NotificationDetailsAdapter notificationDetailsAdapter;
     ArrayList<Store> storeArrayList;
     StoresAdapter storesAdapter;
 
@@ -26,15 +24,10 @@ public class NotificationsDetailActivity extends AppCompatActivity {
         notifications = findViewById(R.id.list_store_vertical);
         notifications.setHasFixedSize(true);
         notifications.setLayoutManager(layoutManager);
-//        notificationDetailsArrayList = new ArrayList<>();
-//        notificationDetailsArrayList.add(new NotificationDetails("Xôi Lá chuối - Võ Chí Công ","152.0 km","Giảm 20%",R.drawable.xoi));
-//        notificationDetailsArrayList.add(new NotificationDetails("Xôi Lá chuối - Núi Thành","152.6 km","Giảm 20%",R.drawable.xoi));
-//        notificationDetailsArrayList.add(new NotificationDetails("Xanh - Bún Măng Gà & Xôi Gà","152.6 km","Giảm 20%",R.drawable.xoi));
-//        notificationDetailsAdapter = new NotificationDetailsAdapter(notificationDetailsArrayList,this,LinearLayoutManager.VERTICAL);
         storeArrayList = new ArrayList<>();
-        storeArrayList.add(new Store("Xôi Lá chuối - Võ Chí Công ","152.0 km","Giảm 20%",R.drawable.xoi));
-        storeArrayList.add(new Store("Xôi Lá chuối - Núi Thành ","152.0 km","Giảm 20%",R.drawable.xoi));
-        storeArrayList.add(new Store("Xanh - Bún Măng Gà & Xôi Gà","152.0 km","Giảm 20%",R.drawable.xoi));
+//        storeArrayList.add(new Store("Xôi Lá chuối - Võ Chí Công ","152.0 km","Giảm 20%",R.drawable.xoi));
+//        storeArrayList.add(new Store("Xôi Lá chuối - Núi Thành ","152.0 km","Giảm 20%",R.drawable.xoi));
+//        storeArrayList.add(new Store("Xanh - Bún Măng Gà & Xôi Gà","152.0 km","Giảm 20%",R.drawable.xoi));
         storesAdapter = new StoresAdapter(storeArrayList,this,LinearLayoutManager.VERTICAL);
         notifications.setAdapter(storesAdapter);
 

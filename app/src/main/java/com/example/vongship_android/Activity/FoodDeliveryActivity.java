@@ -1,6 +1,7 @@
 package com.example.vongship_android.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,15 +20,32 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vongship_android.Adapter.CategoriesAdapter;
 import com.example.vongship_android.Adapter.BannerAdapter;
+import com.example.vongship_android.Adapter.NotificationFragAdapter;
 import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.DTO.Categories;
+import com.example.vongship_android.DTO.NotificationFrag;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,11 +54,12 @@ import java.util.Locale;
 
 public class FoodDeliveryActivity extends AppCompatActivity {
     RecyclerView categories;
-    RecyclerView stores,stores1;
+    RecyclerView recyclerViewstores;
     ArrayList<Categories> categoriesArrayList;
     ArrayList<Store> storeArrayList;
     CategoriesAdapter categoriesAdapter;
     StoresAdapter storesAdapter;
+    final Context CONTEXT = FoodDeliveryActivity.this;
     void loadCategoriesRecyclerView(LinearLayoutManager layoutManager){
         categories = findViewById(R.id.CategoriesRecyclerView);
         categories.setHasFixedSize(true);
@@ -56,19 +75,34 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         categories.setAdapter(categoriesAdapter);
 
     }
-    void loadStoreRecyclerView(LinearLayoutManager layoutManager){
-        stores = findViewById(R.id.StoresRecyclerView);
-        stores.setHasFixedSize(true);
-        stores.setLayoutManager(layoutManager);
+    void loadStoreRecyclerView(final LinearLayoutManager layoutManager){
+        recyclerViewstores = findViewById(R.id.StoresRecyclerView);
+        recyclerViewstores.setHasFixedSize(true);
+        recyclerViewstores.setLayoutManager(layoutManager);
         storeArrayList = new ArrayList<>();
-        storeArrayList.add(new Store("Bánh Ép Huế Hải Phòng","400 m","Freeship 2km",R.drawable.banhep));
-        storeArrayList.add(new Store("Cà Phê Trung Nguyên","1.2 km","Freeship 2km",R.drawable.caphe));
-        storeArrayList.add(new Store("Cơm Chiên Hảo Hảo","700 m","Freeship 2km",R.drawable.comchien));
-        storeArrayList.add(new Store("Bánh Cuốn Lê Duẫn","1.7 km","Freeship 3km",R.drawable.banhcuon));
-        storeArrayList.add(new Store("Cơm Gà Trần Cao Vân","900 m","Freeship 3km",R.drawable.comga));
-        storeArrayList.add(new Store("Milk Tea & Coffee Bông","2 km","Freeship 2km",R.drawable.trasua));
-        storesAdapter = new StoresAdapter(storeArrayList,this,LinearLayoutManager.HORIZONTAL);
-        stores.setAdapter(storesAdapter);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference stores = db.collection("Product");
+        stores.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+               @Override
+               public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if(task.isSuccessful()){
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Store store = new Store();
+                            store.setStoreName(document.get("name").toString());
+                            store.setDistance(document.get("description").toString());
+                            store.setImage(document.get("image").toString());
+                            store.setSale(document.get("storeid").toString());
+                            storeArrayList.add(store);
+                        }
+                        storesAdapter = new StoresAdapter(storeArrayList,CONTEXT,LinearLayoutManager.HORIZONTAL);
+                        recyclerViewstores.setAdapter(storesAdapter);
+                    }
+               }
+           }
+        );
+        
+//        storesAdapter = new StoresAdapter(storeArrayList,this,);
+//        recyclerViewstores.setAdapter(storesAdapter);
     }
 
     @Override
@@ -77,18 +111,10 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food_delivery);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         loadCategoriesRecyclerView(layoutManager);
-
-//        stores = findViewById(R.id.StoresRecyclerView);
-//        stores.setHasFixedSize(true);
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-//        stores.setLayoutManager(layoutManager1);
-//        stores.setAdapter(categoriesAdapter);
         loadStoreRecyclerView(layoutManager1);
-        stores1 = findViewById(R.id.StoresRecyclerView1);
-        stores1.setHasFixedSize(true);
-        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        stores1.setLayoutManager(layoutManager2);
-        stores1.setAdapter(storesAdapter);
+
+
 
         ViewPager viewPager = findViewById(R.id.viewPager);
         BannerAdapter adapter = new BannerAdapter(this);
