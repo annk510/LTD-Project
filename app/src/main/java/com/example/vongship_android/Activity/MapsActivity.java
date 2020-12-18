@@ -9,6 +9,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -47,6 +49,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 || permission_coarse_loc != PackageManager.PERMISSION_GRANTED) {
             makeRequest();
         }
+        ImageButton bt_back= (ImageButton) findViewById(R.id.back_map);
+        bt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private void makeRequest() {

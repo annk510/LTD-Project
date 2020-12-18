@@ -19,15 +19,23 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.vongship_android.Adapter.CategoriesAdapter;
 import com.example.vongship_android.Adapter.BannerAdapter;
+import com.example.vongship_android.Adapter.ProductAdapter;
 import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.DTO.Categories;
+import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,31 +53,47 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         categories = findViewById(R.id.CategoriesRecyclerView);
         categories.setHasFixedSize(true);
         categories.setLayoutManager(layoutManager);
-        categoriesArrayList = new ArrayList<>();
-        categoriesArrayList.add(new Categories(1,"Tên danh mục1",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(2,"Tên danh mục2",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(3,"Tên danh mục3",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(4,"Tên danh mục4",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(5,"Tên danh mục5",R.drawable.trsua));
-        categoriesArrayList.add(new Categories(7,"Tên danh mục6",R.drawable.trsua));
-        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,this,LinearLayoutManager.HORIZONTAL);
-        categories.setAdapter(categoriesAdapter);
 
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Categories")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            categoriesArrayList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Categories categori = new Categories();
+                                categori.setCategoryId(document.getId());
+                                categori.setCategoryName(document.get("categoryname").toString());
+                                categori.setImg(R.drawable.caphe);
+
+                                categoriesArrayList.add(categori);
+                            }
+                            categoriesAdapter = new CategoriesAdapter(categoriesArrayList,FoodDeliveryActivity.this,LinearLayoutManager.HORIZONTAL);
+                            categories.setAdapter(categoriesAdapter);
+                        } else {
+                            Log.w("adad", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
     void loadStoreRecyclerView(LinearLayoutManager layoutManager){
         stores = findViewById(R.id.StoresRecyclerView);
         stores.setHasFixedSize(true);
         stores.setLayoutManager(layoutManager);
         storeArrayList = new ArrayList<>();
-        storeArrayList.add(new Store("Tên Cửa Hàng1","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng2","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng3","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng4","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng5","Khoảng cách","Khuyến mãi",R.drawable.trsua));
-        storeArrayList.add(new Store("Tên Cửa Hàng6","Khoảng cách","Khuyến mãi",R.drawable.trsua));
+        storeArrayList.add(new Store("Bánh Ép Huế Hải Phòng","400 m","Freeship 2km",R.drawable.banhep));
+        storeArrayList.add(new Store("Cà Phê Trung Nguyên","1.2 km","Freeship 2km",R.drawable.caphe));
+        storeArrayList.add(new Store("Cơm Chiên Hảo Hảo","700 m","Freeship 2km",R.drawable.comchien));
+        storeArrayList.add(new Store("Bánh Cuốn Lê Duẫn","1.7 km","Freeship 3km",R.drawable.banhcuon));
+        storeArrayList.add(new Store("Cơm Gà Trần Cao Vân","900 m","Freeship 3km",R.drawable.comga));
+        storeArrayList.add(new Store("Milk Tea & Coffee Bông","2 km","Freeship 2km",R.drawable.trasua));
         storesAdapter = new StoresAdapter(storeArrayList,this,LinearLayoutManager.HORIZONTAL);
         stores.setAdapter(storesAdapter);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
