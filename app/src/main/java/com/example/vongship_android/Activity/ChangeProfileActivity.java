@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.vongship_android.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,6 +46,13 @@ public class ChangeProfileActivity extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Thay đổi thông tin cá nhân");
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            EditText edt_name= findViewById(R.id.txt_change_name);
+            EditText edt_mail= findViewById(R.id.txt_change_mail);
+            edt_name.setText(user.getDisplayName());
+            edt_mail.setText(user.getEmail());
+        }
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

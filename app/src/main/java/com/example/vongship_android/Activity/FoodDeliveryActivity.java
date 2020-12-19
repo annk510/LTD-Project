@@ -19,15 +19,23 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.vongship_android.Adapter.CategoriesAdapter;
 import com.example.vongship_android.Adapter.BannerAdapter;
+import com.example.vongship_android.Adapter.ProductAdapter;
 import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.DTO.Categories;
+import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,16 +53,31 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         categories = findViewById(R.id.CategoriesRecyclerView);
         categories.setHasFixedSize(true);
         categories.setLayoutManager(layoutManager);
-        categoriesArrayList = new ArrayList<>();
-        categoriesArrayList.add(new Categories(1,"Cơm",R.drawable.comga));
-        categoriesArrayList.add(new Categories(2,"Bánh Mỳ",R.drawable.banhmy));
-        categoriesArrayList.add(new Categories(3,"Trà Sữa",R.drawable.trasua));
-        categoriesArrayList.add(new Categories(4,"Cà Phê",R.drawable.caphe));
-        categoriesArrayList.add(new Categories(5,"Nước Giải Khát",R.drawable.rauma));
-        categoriesArrayList.add(new Categories(7,"Bánh Cuốn",R.drawable.banhep));
-        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,this,LinearLayoutManager.HORIZONTAL);
-        categories.setAdapter(categoriesAdapter);
 
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Categories")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            categoriesArrayList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Categories categori = new Categories();
+                                categori.setCategoryId(document.getId());
+                                categori.setCategoryName(document.get("categoryname").toString());
+                                categori.setImg(R.drawable.caphe);
+
+                                categoriesArrayList.add(categori);
+                            }
+                            categoriesAdapter = new CategoriesAdapter(categoriesArrayList,FoodDeliveryActivity.this,LinearLayoutManager.HORIZONTAL);
+                            categories.setAdapter(categoriesAdapter);
+                        } else {
+                            Log.w("adad", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
     void loadStoreRecyclerView(LinearLayoutManager layoutManager){
         stores = findViewById(R.id.StoresRecyclerView);

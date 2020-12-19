@@ -19,10 +19,13 @@ public class NotificationFragAdapter extends BaseAdapter {
     int layout;
     List<NotificationFrag> notificationFragList;
 
+    public NotificationFragAdapter() {
+    }
+
     public NotificationFragAdapter(Context context, int layout, List<NotificationFrag> notificationList) {
         this.context = context;
         this.layout = layout;
-        notificationFragList = notificationList;
+        this.notificationFragList = notificationList;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class NotificationFragAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return notificationFragList.get(i);
     }
 
     @Override
@@ -48,10 +51,10 @@ public class NotificationFragAdapter extends BaseAdapter {
         TextView txtTitle=(TextView) view.findViewById(R.id.text);
         TextView txtDescription=(TextView)view.findViewById(R.id.time);
 
-
         new DownloadImageTask((ImageView) view.findViewById(R.id.image)).execute(notificationFrag.getImages());
         txtTitle.setText(notificationFrag.getmTitle());
         txtDescription.setText(notificationFrag.getmDescription());
+
         return view;
     }
 }

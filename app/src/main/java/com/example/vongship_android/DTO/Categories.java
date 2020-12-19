@@ -2,32 +2,24 @@ package com.example.vongship_android.DTO;
 
 public class Categories {
 
-    private int categoryId;
+    private String categoryId;
     private String categoryName;
-    private String urlImg;
-    private int idImg;
+    private int Img;
 
     public Categories() {
     }
 
-//    public Categories(int categoryId, String categoryName, String urlImg, int idImg) {
-//        this.categoryId = categoryId;
-//        this.categoryName = categoryName;
-//        this.urlImg = urlImg;
-//        this.idImg = idImg;
-//    }
-
-    public Categories(int categoryId, String categoryName, int idImg) {
+    public Categories(String categoryId, String categoryName, int img) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
-        this.idImg = idImg;
+        Img = img;
     }
 
-    public int getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -39,19 +31,11 @@ public class Categories {
         this.categoryName = categoryName;
     }
 
-    public String getUrlImg() {
-        return urlImg;
+    public int getImg() {
+        return Img;
     }
 
-    public void setUrlImg(String urlImg) {
-        this.urlImg = urlImg;
-    }
-
-    public int getIdImg() {
-        return idImg;
-    }
-
-    public void setIdImg(int idImg) {
-        this.idImg = idImg;
+    public void setImg(int img) {
+        Img = img;
     }
 }

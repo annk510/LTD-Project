@@ -63,12 +63,12 @@ public class CategoriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if(orientationOfList == LinearLayoutManager.HORIZONTAL){
             CategoryHolderHorizontal viewHolder = (CategoryHolderHorizontal)holder;
             viewHolder.getName().setText(categoriesArrayList.get(position).getCategoryName());
-            viewHolder.getImg().setImageResource(categoriesArrayList.get(position).getIdImg());
+            viewHolder.getImg().setImageResource(categoriesArrayList.get(position).getImg());
 
         }else{
             CategoryHolderVertical viewHolder = (CategoryHolderVertical)holder;
             viewHolder.getName().setText(categoriesArrayList.get(position).getCategoryName());
-            viewHolder.getImg().setImageResource(categoriesArrayList.get(position).getIdImg());
+            viewHolder.getImg().setImageResource(categoriesArrayList.get(position).getImg());
         }
     }
 

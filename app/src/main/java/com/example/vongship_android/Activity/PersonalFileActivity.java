@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vongship_android.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -75,6 +77,19 @@ public class PersonalFileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String email = user.getEmail();
+            TextView txtname= findViewById(R.id.personal_name);
+            TextView txtmail= findViewById(R.id.personal_mail);
+            if (user.getDisplayName().equals("")    ){
+                txtname.setText("Chưa cập nhật");
+            }else{
+                txtname.setText(user.getDisplayName());
+            }
+
+            txtmail.setText(user.getEmail());
+        }
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

@@ -4,14 +4,18 @@ public class NotificationFrag {
     private String mTitle;
     private String  mDescription;
     private String images;
+    private String content;
+    private String salaTime;
 
     public NotificationFrag() {
     }
 
-    public NotificationFrag(String mTitle, String mDescription, String images) {
+    public NotificationFrag(String mTitle, String mDescription, String images, String content, String salaTime) {
         this.mTitle = mTitle;
         this.mDescription = mDescription;
         this.images = images;
+        this.content = content;
+        this.salaTime = salaTime;
     }
 
     public String getmTitle() {
@@ -36,5 +40,21 @@ public class NotificationFrag {
 
     public void setImages(String images) {
         this.images = images;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getSalaTime() {
+        return salaTime;
+    }
+
+    public void setSalaTime(String salaTime) {
+        this.salaTime = salaTime;
     }
 }
