@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarStoreDetail"
         android:layout_width="match_parent"
@@ -14,82 +13,87 @@
         android:background="#fff"
         app:contentInsetLeft="170dp"
         app:contentInsetStart="170dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:weightSum="9"
-        android:orientation="vertical">
+        android:layout_height="350dp"
+        android:orientation="vertical"
+        android:weightSum="10">
+
         <ImageView
             android:id="@+id/imgStore"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6"
+            android:layout_weight="10"
             android:adjustViewBounds="true"
-            android:src="@drawable/ansang"/>
+            android:src="@drawable/ansang" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:weightSum="10"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:text="Đối tác Loship"
-                android:gravity="center_vertical"
-                android:drawableLeft="@drawable/ic_baseline_search_24"
-                android:background="@color/colorAccent"/>
+            android:layout_marginVertical="10dp"
+            android:orientation="vertical"
+            android:weightSum="10">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/button_red"
+                android:drawableLeft="@drawable/ic_baseline_star_24"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:text="Đối tác Loship"
+                android:textColor="#FFF" />
+
+            <TextView
+                android:textColor="@color/black"
                 android:id="@+id/nameStore"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_weight="2"
                 android:text="Tên Cửa Hàng"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/distanceStore"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_weight="2"
                 android:text="Khoảng cách" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:orientation="horizontal"
-                >
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
                     android:text="Đang mở cửa"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     tools:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Xem giờ mở cửa"
-                    android:textAlignment="textEnd" />
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:padding="10dp">
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listProductInStore"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/listProductInStore"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
 </LinearLayout>

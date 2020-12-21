@@ -6,11 +6,12 @@ import android.os.Bundle;
 
 import com.example.vongship_android.R;
 
-public class cart extends AppCompatActivity {
+public class Cart extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart2);
+        setContentView(R.layout.activity_cart);
+
     }
 }

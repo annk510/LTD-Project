@@ -203,9 +203,11 @@ public class HomeFragment extends Fragment {
         String address=null;
         if(matches != null){
             Address bestMatch = (matches.isEmpty() ? null : matches.get(0));
-            address= bestMatch.getAddressLine(0);
-        }
+            if(bestMatch != null){
+                address= bestMatch.getAddressLine(0);
+            }
 
+        }
 
         return address;
 

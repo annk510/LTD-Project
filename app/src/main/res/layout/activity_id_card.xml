@@ -97,7 +97,7 @@
                 android:textStyle="bold"
                 android:textSize="25dp"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/button_green"
+                android:background="@drawable/button_red"
                 />
         </LinearLayout>
     </LinearLayout>
