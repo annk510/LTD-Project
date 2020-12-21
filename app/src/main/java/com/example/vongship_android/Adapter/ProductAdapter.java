@@ -45,7 +45,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHolder.getName().setText(productArrayList.get(position).getProductname());
         new DownloadImageTask(viewHolder.getImg()).execute(productArrayList.get(position).getImg());
         viewHolder.getDescription().setText(productArrayList.get(position).getDescription());
-        viewHolder.getPrice().setText(productArrayList.get(position).getPrice());
+        viewHolder.getPrice().setText(productArrayList.get(position).getPrice()+ "VNĐ");
         viewHolder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
