@@ -92,5 +92,24 @@
                 android:textStyle="italic" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+        <Button
+            android:id="@+id/bt_update"
+            android:layout_below="@id/phoneTv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Lưu"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_red"
+            />
+    </LinearLayout>
 
 </LinearLayout>
