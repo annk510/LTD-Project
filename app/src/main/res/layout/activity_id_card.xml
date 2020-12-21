@@ -88,7 +88,7 @@
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal">
             <Button
-                android:id="@+id/bt_update"
+                android:id="@+id/bt_change_pass"
                 android:layout_below="@id/phoneTv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

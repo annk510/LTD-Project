@@ -1,5 +1,6 @@
 package com.example.vongship_android.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,15 +8,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.vongship_android.Adapter.ProductAdapter;
 import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.Class.DownloadImageTask;
+import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -28,12 +37,33 @@ public class NotificationsDetailActivity extends AppCompatActivity {
         notifications = findViewById(R.id.list_in_detail_notification);
         notifications.setHasFixedSize(true);
         notifications.setLayoutManager(layoutManager);
-        storeArrayList = new ArrayList<>();
-//        storeArrayList.add(new Store("Xôi Lá chuối - Võ Chí Công ","152.0 km","Giảm 20%",R.drawable.xoi));
-//        storeArrayList.add(new Store("Xôi Lá chuối - Núi Thành ","152.0 km","Giảm 20%",R.drawable.xoi));
-//        storeArrayList.add(new Store("Xanh - Bún Măng Gà & Xôi Gà","152.0 km","Giảm 20%",R.drawable.xoi));
-        storesAdapter = new StoresAdapter(storeArrayList,this,LinearLayoutManager.VERTICAL);
-        notifications.setAdapter(storesAdapter);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Stores").orderBy("distance").limit(4)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            storeArrayList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Store store = new Store();
+                                store.setStoreId(document.getId());
+                                store.setStoreName(document.getString("storename"));
+                                store.setDistance(document.getString("distance"));
+                                store.setImage(document.getString("image"));
+                                store.setSale(document.getString("sale"));
+                                storeArrayList.add(store);
+                            }
+                            storesAdapter = new StoresAdapter(storeArrayList,NotificationsDetailActivity.this,LinearLayoutManager.VERTICAL);
+                            notifications.setAdapter(storesAdapter);
+                        } else {
+                            Log.w("Error", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
 
     }
     @Override
