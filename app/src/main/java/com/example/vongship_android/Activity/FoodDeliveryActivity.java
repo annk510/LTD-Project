@@ -46,11 +46,11 @@ import java.util.Locale;
 
 public class FoodDeliveryActivity extends AppCompatActivity {
     RecyclerView categories;
-    RecyclerView recyclerViewstores;
+    RecyclerView recyclerViewstores, recyclerViewstores1;
     ArrayList<Categories> categoriesArrayList;
-    ArrayList<Store> storeArrayList;
+    ArrayList<Store> storeArrayList, storeArrayList1;
     CategoriesAdapter categoriesAdapter;
-    StoresAdapter storesAdapter;
+    StoresAdapter storesAdapter, storesAdapter1;
     final Context CONTEXT = FoodDeliveryActivity.this;
     void loadCategoriesRecyclerView(LinearLayoutManager layoutManager){
         categories = findViewById(R.id.CategoriesRecyclerView);
@@ -110,6 +110,34 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         );
 
     }
+    void loadStoreRecyclerView1(final LinearLayoutManager layoutManager){
+        recyclerViewstores1 = findViewById(R.id.StoresRecyclerView1);
+        recyclerViewstores1.setHasFixedSize(true);
+        recyclerViewstores1.setLayoutManager(layoutManager);
+        storeArrayList1 = new ArrayList<>();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Stores").whereEqualTo("new",true)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                 @Override
+                                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                         if(task.isSuccessful()){
+                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                 Store store = new Store();
+                                 store.setStoreId(document.getId());
+                                 store.setStoreName(document.getString("storename"));
+                                 store.setDistance(document.getString("distance"));
+                                 store.setImage(document.getString("image"));
+                                 store.setSale(document.getString("sale"));
+                                 storeArrayList1.add(store);
+                             }
+                             storesAdapter1 = new StoresAdapter(storeArrayList1,CONTEXT,LinearLayoutManager.HORIZONTAL);
+                             recyclerViewstores1.setAdapter(storesAdapter1);
+                         }
+                     }
+                 }
+        );
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +147,9 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         loadCategoriesRecyclerView(layoutManager);
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         loadStoreRecyclerView(layoutManager1);
+
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        loadStoreRecyclerView1(layoutManager2);
 
 
 
