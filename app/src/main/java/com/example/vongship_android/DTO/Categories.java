@@ -1,18 +1,20 @@
 package com.example.vongship_android.DTO;
 
-public class Categories {
+import java.io.Serializable;
+
+public class Categories implements Serializable  {
 
     private String categoryId;
     private String categoryName;
-    private int Img;
+    private String image;
 
     public Categories() {
     }
 
-    public Categories(String categoryId, String categoryName, int img) {
+    public Categories(String categoryId, String categoryName, String image) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
-        Img = img;
+        this.image = image;
     }
 
     public String getCategoryId() {
@@ -31,11 +33,11 @@ public class Categories {
         this.categoryName = categoryName;
     }
 
-    public int getImg() {
-        return Img;
+    public String getImage() {
+        return image;
     }
 
-    public void setImg(int img) {
-        Img = img;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

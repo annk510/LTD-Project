@@ -12,10 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.Activity.CategoryDetailsActivity;
 import com.example.vongship_android.Activity.ProductDetailsActivity;
+import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.DTO.Categories;
 import com.example.vongship_android.R;
 import com.example.vongship_android.ViewHolder.CategoryHolderHorizontal;
 import com.example.vongship_android.ViewHolder.CategoryHolderVertical;
+import com.example.vongship_android.ViewHolder.ItemClickListener;
 
 import java.util.ArrayList;
 
@@ -36,23 +38,11 @@ public class CategoriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         if(orientationOfList == LinearLayoutManager.HORIZONTAL){
             View itemView = inflater.inflate(R.layout.item_category_horizontal,parent,false);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, CategoryDetailsActivity.class);
-                    context.startActivity(intent);
-                }
-            });
+
             return new CategoryHolderHorizontal(itemView);
         }else {
             View itemView = inflater.inflate(R.layout.item_category_vertical,parent,false);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, ProductDetailsActivity.class);
-                    context.startActivity(intent);
-                }
-            });
+
             return new CategoryHolderVertical(itemView);
         }
     }
@@ -63,12 +53,27 @@ public class CategoriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if(orientationOfList == LinearLayoutManager.HORIZONTAL){
             CategoryHolderHorizontal viewHolder = (CategoryHolderHorizontal)holder;
             viewHolder.getName().setText(categoriesArrayList.get(position).getCategoryName());
-            viewHolder.getImg().setImageResource(categoriesArrayList.get(position).getImg());
-
+            new DownloadImageTask(viewHolder.getImg()).execute(categoriesArrayList.get(position).getImage());
+            viewHolder.setItemClickListener(new ItemClickListener(){
+                @Override
+                public void onClick(View view, int position, boolean isLongClick) {
+                    Intent intent = new Intent(context, CategoryDetailsActivity.class);
+                    intent.putExtra("category",categoriesArrayList.get(position));
+                    context.startActivity(intent);
+                }
+            });
         }else{
             CategoryHolderVertical viewHolder = (CategoryHolderVertical)holder;
             viewHolder.getName().setText(categoriesArrayList.get(position).getCategoryName());
-            viewHolder.getImg().setImageResource(categoriesArrayList.get(position).getImg());
+            new DownloadImageTask(viewHolder.getImg()).execute(categoriesArrayList.get(position).getImage());
+            viewHolder.setItemClickListener(new ItemClickListener(){
+                @Override
+                public void onClick(View view, int position, boolean isLongClick) {
+                    Intent intent = new Intent(context, CategoryDetailsActivity.class);
+                    intent.putExtra("category",categoriesArrayList.get(position));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

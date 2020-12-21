@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.Activity.ProductDetailsActivity;
 import com.example.vongship_android.Activity.StoreDetailsActivity;
+import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
 import com.example.vongship_android.ViewHolder.StoreHolderHorizontal;
@@ -62,16 +63,20 @@ public class StoresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if(orientationOfList == LinearLayoutManager.HORIZONTAL){
             StoreHolderHorizontal viewHolder = (StoreHolderHorizontal)holder;
             viewHolder.getName().setText(storeArrayList.get(position).getStoreName());
-            viewHolder.getImg().setImageResource(storeArrayList.get(position).getImg());
+            viewHolder.getImg().setImageResource(R.drawable.ansang);
+            new DownloadImageTask(viewHolder.getImg()).execute(storeArrayList.get(position).getImage());
             viewHolder.getDistance().setText(storeArrayList.get(position).getDistance());
-            viewHolder.getSales().setText(storeArrayList.get(position).getSales());
+            viewHolder.getSales().setText(storeArrayList.get(position).getSale());
+
 
         }else{
             StoreHolderVertical viewHolder = (StoreHolderVertical)holder;
             viewHolder.getName().setText(storeArrayList.get(position).getStoreName());
-            viewHolder.getImg().setImageResource(storeArrayList.get(position).getImg());
+            viewHolder.getImg().setImageResource(R.drawable.ansang);
+            new DownloadImageTask(viewHolder.getImg()).execute(storeArrayList.get(position).getImage());
             viewHolder.getDistance().setText(storeArrayList.get(position).getDistance());
-            viewHolder.getSales().setText(storeArrayList.get(position).getSales());
+            viewHolder.getSales().setText(storeArrayList.get(position).getSale());
+
         }
 
     }

@@ -21,8 +21,6 @@ import java.util.ArrayList;
 
 public class NotificationsDetailActivity extends AppCompatActivity {
     RecyclerView notifications;
-    //    ArrayList<NotificationDetails> notificationDetailsArrayList;
-//    NotificationDetailsAdapter notificationDetailsAdapter;
     ArrayList<Store> storeArrayList;
     StoresAdapter storesAdapter;
 
@@ -31,9 +29,9 @@ public class NotificationsDetailActivity extends AppCompatActivity {
         notifications.setHasFixedSize(true);
         notifications.setLayoutManager(layoutManager);
         storeArrayList = new ArrayList<>();
-        storeArrayList.add(new Store("Xôi Lá chuối - Võ Chí Công ","152.0 km","Giảm 20%",R.drawable.xoi));
-        storeArrayList.add(new Store("Xôi Lá chuối - Núi Thành ","152.0 km","Giảm 20%",R.drawable.xoi));
-        storeArrayList.add(new Store("Xanh - Bún Măng Gà & Xôi Gà","152.0 km","Giảm 20%",R.drawable.xoi));
+//        storeArrayList.add(new Store("Xôi Lá chuối - Võ Chí Công ","152.0 km","Giảm 20%",R.drawable.xoi));
+//        storeArrayList.add(new Store("Xôi Lá chuối - Núi Thành ","152.0 km","Giảm 20%",R.drawable.xoi));
+//        storeArrayList.add(new Store("Xanh - Bún Măng Gà & Xôi Gà","152.0 km","Giảm 20%",R.drawable.xoi));
         storesAdapter = new StoresAdapter(storeArrayList,this,LinearLayoutManager.VERTICAL);
         notifications.setAdapter(storesAdapter);
 

@@ -9,9 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.R;
 
-public class CategoryHolderHorizontal extends RecyclerView.ViewHolder {
+public class CategoryHolderHorizontal extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
     private TextView name;
     private ImageView img;
+    private ItemClickListener itemClickListener;
+
+    public ItemClickListener getItemClickListener() {
+        return itemClickListener;
+    }
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
 
     public TextView getName() {
         return name;
@@ -32,6 +41,18 @@ public class CategoryHolderHorizontal extends RecyclerView.ViewHolder {
         super(itemView);
         this.setName((TextView) itemView.findViewById(R.id.itemcategory_name));
         this.setImg((ImageView) itemView.findViewById(R.id.itemcategory_image));
+        itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+        itemClickListener.onClick(v,getAdapterPosition(),false);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        itemClickListener.onClick(v,getAdapterPosition(),true);
+        return true;
+    }
 }

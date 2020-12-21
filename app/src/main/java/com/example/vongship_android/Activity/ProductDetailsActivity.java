@@ -110,8 +110,8 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                                 Product product = new Product();
                                 product.setProductid(document.getId());
                                 product.setProductname(document.getString("name"));
-                                product.setDescription(document.get("description").toString());
-                                product.setPrice(document.get("price").toString());
+                                product.setDescription(document.getString("description"));
+                                product.setPrice(document.getString("price"));
                                 product.setImg(R.drawable.trasua);
                                 productArrayList.add(product);
                             }

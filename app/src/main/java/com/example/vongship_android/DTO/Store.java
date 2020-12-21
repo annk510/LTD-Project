@@ -4,25 +4,18 @@ public class Store {
     private String storeId;
     private String storeName;
     private String distance;
-    private String sales;
-    private int img;
+    private String sale;
+    private String image;
 
     public Store() {
     }
 
-    public Store( String storeName, String distance, String sales, int img) {
+    public Store(String storeId, String storeName, String distance, String sale, String image) {
+        this.storeId = storeId;
         this.storeName = storeName;
         this.distance = distance;
-        this.sales = sales;
-        this.img = img;
-    }
-
-    public int getImg() {
-        return img;
-    }
-
-    public void setImg(int img) {
-        this.img = img;
+        this.sale = sale;
+        this.image = image;
     }
 
     public String getStoreId() {
@@ -49,11 +42,19 @@ public class Store {
         this.distance = distance;
     }
 
-    public String getSales() {
-        return sales;
+    public String getSale() {
+        return sale;
     }
 
-    public void setSales(String sales) {
-        this.sales = sales;
+    public void setSale(String sale) {
+        this.sale = sale;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
