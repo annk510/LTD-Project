@@ -1,12 +1,42 @@
 package com.example.vongship_android.DTO;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     private String productid;
     private String productname;
     private String price;
     private String description;
     private String image;
+    private String categoryid;
+    private String storeid;
+
+    public Product(String productid, String productname, String price, String description, String image, String categoryid, String storeid) {
+        this.productid = productid;
+        this.productname = productname;
+        this.price = price;
+        this.description = description;
+        this.image = image;
+        this.categoryid = categoryid;
+        this.storeid = storeid;
+    }
+
+    public String getCategoryid() {
+        return categoryid;
+    }
+
+    public void setCategoryid(String categoryid) {
+        this.categoryid = categoryid;
+    }
+
+    public String getStoreid() {
+        return storeid;
+    }
+
+    public void setStoreid(String storeid) {
+        this.storeid = storeid;
+    }
 
     public Product() {
     }

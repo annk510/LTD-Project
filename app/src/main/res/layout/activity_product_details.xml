@@ -12,17 +12,20 @@
         app:contentInsetLeft="170dp"
         app:contentInsetStart="170dp"/>
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingHorizontal="15dp">
+
         <ImageView
-            android:scaleType="fitXY"
+            android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="260dp"
-            android:src="@drawable/ansang"/>
+            android:scaleType="fitXY"
+            android:src="@drawable/ansang" />
+
         <TextView
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tên sản phẩm"
@@ -30,6 +33,7 @@
             android:layout_marginTop="15dp"
             android:textStyle="bold"/>
         <TextView
+            android:id="@+id/price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Giá sản phẩm"

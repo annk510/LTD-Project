@@ -182,11 +182,12 @@ public class HomeFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Address bestMatch = (matches.isEmpty() ? null : matches.get(0));
         String address=null;
-        if(bestMatch !=null){
+        if(matches != null){
+            Address bestMatch = (matches.isEmpty() ? null : matches.get(0));
             address= bestMatch.getAddressLine(0);
         }
+
 
         return address;
 

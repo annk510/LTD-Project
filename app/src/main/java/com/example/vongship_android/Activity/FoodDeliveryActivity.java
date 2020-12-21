@@ -108,9 +108,7 @@ public class FoodDeliveryActivity extends AppCompatActivity {
                }
            }
         );
-        
-//        storesAdapter = new StoresAdapter(storeArrayList,this,);
-//        recyclerViewstores.setAdapter(storesAdapter);
+
     }
 
     @Override
