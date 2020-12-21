@@ -66,6 +66,7 @@ public class StoreHolderHorizontal extends RecyclerView.ViewHolder implements Vi
         itemView.setOnLongClickListener(this);
     }
 
+    @Override
     public void onClick(View v) {
         itemClickListener.onClick(v,getAdapterPosition(),false);
     }

@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.Activity.ProductDetailsActivity;
 import com.example.vongship_android.Activity.StoreDetailsActivity;
+import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.R;
 import com.example.vongship_android.ViewHolder.CategoryHolderHorizontal;
+import com.example.vongship_android.ViewHolder.ItemClickListener;
 import com.example.vongship_android.ViewHolder.ProductHolderVertical;
 
 import java.util.ArrayList;
@@ -34,13 +36,6 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.item_product_vertical,parent,false);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, ProductDetailsActivity.class);
-                context.startActivity(intent);
-            }
-        });
         return new ProductHolderVertical(itemView);
     }
 
@@ -48,9 +43,17 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ProductHolderVertical viewHolder = (ProductHolderVertical)holder;
         viewHolder.getName().setText(productArrayList.get(position).getProductname());
-        viewHolder.getImg().setImageResource(productArrayList.get(position).getImg());
+        new DownloadImageTask(viewHolder.getImg()).execute(productArrayList.get(position).getImg());
         viewHolder.getDescription().setText(productArrayList.get(position).getDescription());
         viewHolder.getPrice().setText(productArrayList.get(position).getPrice());
+        viewHolder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick) {
+                Intent intent = new Intent(context, ProductDetailsActivity.class);
+                intent.putExtra("Product",productArrayList.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

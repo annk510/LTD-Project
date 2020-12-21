@@ -65,7 +65,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 for (String storeid: arrayListStoreID) {
-                                    if(document.getId().equals(storeid)){
+                                    if(document.getId().equalsIgnoreCase(storeid)){
                                         Store store = new Store();
                                         store.setStoreId(document.getId());
                                         store.setStoreName(document.getString("storename"));

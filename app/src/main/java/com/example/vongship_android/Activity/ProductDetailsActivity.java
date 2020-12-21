@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.Adapter.ProductAdapter;
 import com.example.vongship_android.Adapter.StoresAdapter;
+import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
@@ -35,6 +36,7 @@ public class ProductDetailsActivity  extends AppCompatActivity {
     RecyclerView products;
     ArrayList<Product> productArrayList;
      ProductAdapter productAdapter;
+     Product product;
 
 
     @Override
@@ -42,6 +44,14 @@ public class ProductDetailsActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+
+        product = (Product) getIntent().getSerializableExtra("Product");
+        TextView name = findViewById(R.id.name);
+        name.setText(product.getProductname());
+        TextView price = findViewById(R.id.price);
+        price.setText(product.getPrice());
+        ImageView image = findViewById(R.id.image);
+        new DownloadImageTask(image).execute(product.getImg());
         loadProductRecyclerView(layoutManager);
         Button button_buy = findViewById(R.id.button_buy);
         button_buy.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +61,14 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                 final View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet_cards,(LinearLayout)findViewById(R.id.bottom_sheet));
                 bottomSheetDialog.setContentView(bottomSheetView);
                 bottomSheetDialog.show();
+
+                ImageView image = bottomSheetDialog.findViewById(R.id.image);
+                new DownloadImageTask(image).execute(product.getImg());
+                TextView itemname = bottomSheetDialog.findViewById(R.id.name);
+                itemname.setText(product.getProductname());
+                TextView itemprice = bottomSheetDialog.findViewById(R.id.price);
+                itemprice.setText(product.getPrice());
+
                 bottomSheetView.findViewById(R.id.remove_one).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -98,7 +116,7 @@ public class ProductDetailsActivity  extends AppCompatActivity {
 
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Product")
+        db.collection("Product").whereEqualTo("storeid",product.getStoreid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -112,7 +130,8 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                                 product.setProductname(document.getString("name"));
                                 product.setDescription(document.getString("description"));
                                 product.setPrice(document.get("price").toString());
-                                product.setImg(R.drawable.trasua);
+                                product.setImg(document.getString("image"));
+                                product.setStoreid(document.getString("storeid"));
                                 productArrayList.add(product);
                             }
                             productAdapter = new ProductAdapter(productArrayList,ProductDetailsActivity.this,LinearLayoutManager.VERTICAL);

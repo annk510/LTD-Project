@@ -9,9 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.R;
 
-public class ProductHolderVertical extends RecyclerView.ViewHolder{
+public class ProductHolderVertical extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
     private TextView name,price,description;
     private ImageView img;
+    private ItemClickListener itemClickListener;
+
+    public ItemClickListener getItemClickListener() {
+        return itemClickListener;
+    }
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
 
     public TextView getName() {
         return name;
@@ -51,5 +60,17 @@ public class ProductHolderVertical extends RecyclerView.ViewHolder{
         this.setDescription((TextView) itemView.findViewById(R.id.itemproduct_description)); ;
         this.setPrice((TextView) itemView.findViewById(R.id.itemproduct_price)); ;
         this.setImg((ImageView) itemView.findViewById(R.id.itemproduct_image));
+        itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
+    }
+
+    public void onClick(View v) {
+        itemClickListener.onClick(v,getAdapterPosition(),false);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        itemClickListener.onClick(v,getAdapterPosition(),true);
+        return true;
     }
 }

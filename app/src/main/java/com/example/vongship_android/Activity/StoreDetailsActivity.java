@@ -35,7 +35,6 @@ public class StoreDetailsActivity extends AppCompatActivity {
         product = findViewById(R.id.listProductInStore);
         product.setHasFixedSize(true);
         product.setLayoutManager(layoutManager);
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Product").whereEqualTo("storeid",idStore)
                 .get()
@@ -51,7 +50,8 @@ public class StoreDetailsActivity extends AppCompatActivity {
                                 product.setProductname(document.getString("name"));
                                 product.setDescription(document.getString("description"));
                                 product.setPrice(document.get("price").toString());
-                                product.setImg(R.drawable.trasua);
+                                product.setImg(document.getString("image"));
+                                product.setStoreid(document.getString("storeid"));
                                 productArrayList.add(product);
                             }
                             productAdapter = new ProductAdapter(productArrayList,StoreDetailsActivity.this,LinearLayoutManager.VERTICAL);
@@ -62,6 +62,7 @@ public class StoreDetailsActivity extends AppCompatActivity {
                         }
                     }
                 });
+
 
     }
     @Override
