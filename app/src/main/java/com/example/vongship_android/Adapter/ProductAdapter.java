@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.Activity.ProductDetailsActivity;
 import com.example.vongship_android.Activity.StoreDetailsActivity;
+import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.R;
 import com.example.vongship_android.ViewHolder.CategoryHolderHorizontal;
@@ -48,7 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ProductHolderVertical viewHolder = (ProductHolderVertical)holder;
         viewHolder.getName().setText(productArrayList.get(position).getProductname());
-        viewHolder.getImg().setImageResource(productArrayList.get(position).getImg());
+        new DownloadImageTask(viewHolder.getImg()).execute(productArrayList.get(position).getImg());
         viewHolder.getDescription().setText(productArrayList.get(position).getDescription());
         viewHolder.getPrice().setText(productArrayList.get(position).getPrice());
     }

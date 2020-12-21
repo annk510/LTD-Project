@@ -1,8 +1,10 @@
 package com.example.vongship_android.Activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.vongship_android.Adapter.ProductAdapter;
 import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -24,12 +31,30 @@ public class StoreDetailsActivity extends AppCompatActivity {
         product.setHasFixedSize(true);
         product.setLayoutManager(layoutManager);
         productArrayList = new ArrayList<>();
-        productArrayList.add(new Product("1","Bánh Mỳ","35.000 VNĐ","Bánh mỳ Việt, đầy dinh dưỡng",R.drawable.banhmy));
-        productArrayList.add(new Product("1","Trà Sữa Trân Châu","50.000 VNĐ","Trà sữa thơm ngon nứt mũi",R.drawable.trasua));
-        productArrayList.add(new Product("1","Bánh Ép Huế","15.000 VNĐ","Bánh ép tôm thịt Huế",R.drawable.trsua));
-        productArrayList.add(new Product("1","Cà Phê","15.000 VNĐ","Đậm đà hương vị Miền Trung",R.drawable.caphe));
-        productArrayList.add(new Product("1","Nước Rau Má","20.000 VNĐ","Nước rau má làm đã cơn khát",R.drawable.rauma));
-        productArrayList.add(new Product("1","Bánh Cuốn","25.000 VNĐ","Càng cuốn càng ghiền",R.drawable.banhcuon));
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Product")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            productArrayList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Product product = new Product();
+                                product.setProductid(document.getId());
+                                product.setProductname(document.getString("name"));
+                                product.setDescription(document.getString("description"));
+                                product.setPrice(document.get("price").toString());
+                                product.setImg(document.getString("image"));
+                                productArrayList.add(product);
+                            }
+
+                        } else {
+                            Log.w("adad", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
         productAdapter = new ProductAdapter(productArrayList,this,LinearLayoutManager.VERTICAL);
         product.setAdapter(productAdapter);
 

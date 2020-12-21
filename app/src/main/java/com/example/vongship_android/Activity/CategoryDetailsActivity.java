@@ -38,7 +38,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         final TextView txt1=  findViewById(R.id.txt_location_category);
         final Categories categories = (Categories) getIntent().getSerializableExtra("category");
         TextView categoryname = findViewById(R.id.categoryname);
-        categoryname.setText(categories.getCategoryName());
+        categoryname.setText(categories.getCategoryId());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final ArrayList<String> arrayListStoreID = new ArrayList<>();
         db.collection("Product")
@@ -65,7 +65,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             for (QueryDocumentSnapshot document : task.getResult()){
                                 for (String storeid: arrayListStoreID) {
-                                    if(document.getId().equals(storeid)){
+                                    if(document.getId().equalsIgnoreCase(storeid)){
                                         Store store = new Store();
                                         store.setStoreId(document.getId());
                                         store.setStoreName(document.getString("storename"));

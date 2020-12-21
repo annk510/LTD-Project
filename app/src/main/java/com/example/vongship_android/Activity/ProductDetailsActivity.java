@@ -112,7 +112,7 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                                 product.setProductname(document.getString("name"));
                                 product.setDescription(document.getString("description"));
                                 product.setPrice(document.getString("price"));
-                                product.setImg(R.drawable.trasua);
+                                product.setImg(document.getString("image"));
                                 productArrayList.add(product);
                             }
                             productAdapter = new ProductAdapter(productArrayList,ProductDetailsActivity.this,LinearLayoutManager.VERTICAL);
