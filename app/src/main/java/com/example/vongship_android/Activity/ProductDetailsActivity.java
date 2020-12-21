@@ -35,48 +35,8 @@ public class ProductDetailsActivity  extends AppCompatActivity {
     RecyclerView products;
     ArrayList<Product> productArrayList;
      ProductAdapter productAdapter;
-    void loadProductRecyclerView(LinearLayoutManager layoutManager){
-        products = findViewById(R.id.listProductInStore);
-        products.setHasFixedSize(true);
-        products.setLayoutManager(layoutManager);
 
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Product")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                        if (task.isSuccessful()) {
-                            productArrayList = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Product product = new Product();
-                                product.setProductid(document.getId());
-                                product.setProductname(document.get("name").toString());
-                                product.setDescription(document.get("description").toString());
-                                product.setPrice(document.get("price").toString());
-                                product.setImg(R.drawable.trasua);
-                                productArrayList.add(product);
-                            }
-                            productAdapter = new ProductAdapter(productArrayList,ProductDetailsActivity.this,LinearLayoutManager.VERTICAL);
-                            products.setAdapter(productAdapter);
-                        } else {
-                            Log.w("adad", "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-
-
-//        productArrayList.add(new Product("1","Nước Dừa Trần Cao Vân","20.000 VNĐ","Freeship 2km",R.drawable.nuocdua));
-//        productArrayList.add(new Product("2","Cơm Chiên Dương Châu","50.000 VNĐ","Sale 10%",R.drawable.comchien));
-//        productArrayList.add(new Product("3","Cà Phê Trung Nguyên","25.000 VNĐ","Freeship 1.5km",R.drawable.caphe));
-//        productArrayList.add(new Product("4","Bánh Ép Huế","15.000 VNĐ","Freeship 2km",R.drawable.banhep));
-//        productArrayList.add(new Product("5","Trà Sữa Trân Châu","35.000 VNĐ","Sale 5%",R.drawable.trasua));
-//        productArrayList.add(new Product("6","Trà Chanh","20.000 VNĐ","Freeship 2km",R.drawable.trachanh));
-
-
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,6 +90,39 @@ public class ProductDetailsActivity  extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);//của nút quay lại trên toolbar, có cái func ở dưới nữa.
 
         actionBar.setTitle("");
+    }
+    void loadProductRecyclerView(LinearLayoutManager layoutManager){
+        products = findViewById(R.id.listProductInStore);
+        products.setHasFixedSize(true);
+        products.setLayoutManager(layoutManager);
+
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Product")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            productArrayList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Product product = new Product();
+                                product.setProductid(document.getId());
+                                product.setProductname(document.getString("name"));
+                                product.setDescription(document.getString("description"));
+                                product.setPrice(document.getString("price"));
+                                product.setImg(R.drawable.trasua);
+                                productArrayList.add(product);
+                            }
+                            productAdapter = new ProductAdapter(productArrayList,ProductDetailsActivity.this,LinearLayoutManager.VERTICAL);
+                            products.setAdapter(productAdapter);
+                        } else {
+                            Log.w("adad", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

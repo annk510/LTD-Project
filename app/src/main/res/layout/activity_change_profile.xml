@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="#fff"
-        app:contentInsetStart="100dp"></androidx.appcompat.widget.Toolbar>
+        app:contentInsetStart="80dp"></androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,12 +32,13 @@
             android:textStyle="bold"/>
 
         <EditText
+            android:id="@+id/txt_change_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:hint="Nhập tên của bạn"
             android:textColor="#676767"
-            android:textSize="14dp"/>
+            android:textSize="14dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,15 +47,16 @@
             android:text="Email"
             android:textColor="#000000"
             android:textSize="17dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/txt_change_mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:hint="Nhập email của bạn"
             android:textColor="#676767"
-            android:textSize="14dp"/>
+            android:textSize="14dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

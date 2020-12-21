@@ -1,15 +1,5 @@
 package com.example.vongship_android.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -23,25 +13,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.vongship_android.Adapter.CategoriesAdapter;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.vongship_android.Adapter.BannerAdapter;
-import com.example.vongship_android.Adapter.NotificationFragAdapter;
+import com.example.vongship_android.Adapter.CategoriesAdapter;
 import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.DTO.Categories;
-import com.example.vongship_android.DTO.NotificationFrag;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -51,6 +41,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+
 
 public class FoodDeliveryActivity extends AppCompatActivity {
     RecyclerView categories;
@@ -64,16 +56,31 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         categories = findViewById(R.id.CategoriesRecyclerView);
         categories.setHasFixedSize(true);
         categories.setLayoutManager(layoutManager);
-        categoriesArrayList = new ArrayList<>();
-        categoriesArrayList.add(new Categories(1,"Cơm",R.drawable.comga));
-        categoriesArrayList.add(new Categories(2,"Bánh Mỳ",R.drawable.banhmy));
-        categoriesArrayList.add(new Categories(3,"Trà Sữa",R.drawable.trasua));
-        categoriesArrayList.add(new Categories(4,"Cà Phê",R.drawable.caphe));
-        categoriesArrayList.add(new Categories(5,"Nước Giải Khát",R.drawable.rauma));
-        categoriesArrayList.add(new Categories(7,"Bánh Cuốn",R.drawable.banhep));
-        categoriesAdapter = new CategoriesAdapter(categoriesArrayList,this,LinearLayoutManager.HORIZONTAL);
-        categories.setAdapter(categoriesAdapter);
 
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Categories")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            categoriesArrayList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Categories categori = new Categories();
+                                categori.setCategoryId(document.getId());
+                                categori.setCategoryName(document.get("categoryname").toString());
+                                categori.setImage(document.getString("image"));
+
+                                categoriesArrayList.add(categori);
+                            }
+                            categoriesAdapter = new CategoriesAdapter(categoriesArrayList,FoodDeliveryActivity.this,LinearLayoutManager.HORIZONTAL);
+                            categories.setAdapter(categoriesAdapter);
+                        } else {
+                            Log.w("adad", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
     void loadStoreRecyclerView(final LinearLayoutManager layoutManager){
         recyclerViewstores = findViewById(R.id.StoresRecyclerView);
@@ -81,17 +88,18 @@ public class FoodDeliveryActivity extends AppCompatActivity {
         recyclerViewstores.setLayoutManager(layoutManager);
         storeArrayList = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference stores = db.collection("Product");
-        stores.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("Stores").orderBy("distance").limit(5)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                @Override
                public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if(task.isSuccessful()){
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Store store = new Store();
-                            store.setStoreName(document.get("name").toString());
-                            store.setDistance(document.get("description").toString());
-                            store.setImage(document.get("image").toString());
-                            store.setSale(document.get("storeid").toString());
+                            store.setStoreId(document.getId());
+                            store.setStoreName(document.getString("storename"));
+                            store.setDistance(document.getString("distance"));
+                            store.setImage(document.getString("image"));
+                            store.setSale(document.getString("sale"));
                             storeArrayList.add(store);
                         }
                         storesAdapter = new StoresAdapter(storeArrayList,CONTEXT,LinearLayoutManager.HORIZONTAL);

@@ -50,11 +50,19 @@ public class NotificationFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent myIntent = new Intent(getActivity(), NotificationsDetailActivity.class);
-                NotificationFragment.this.startActivity(myIntent);
+                showDetail(i);
             }
         });
         return root;
+    }
+    public void showDetail(int i){
+        NotificationFrag noti=  fragArrayList.get(i);
+        Intent myIntent = new Intent(getActivity(), NotificationsDetailActivity.class);
+        myIntent.putExtra("title",noti.getmTitle());
+        myIntent.putExtra("img",noti.getImages());
+        myIntent.putExtra("content",noti.getContent());
+        myIntent.putExtra("saleTime",noti.getSalaTime());
+        startActivity(myIntent);
     }
 
     private void Anhxa() {
@@ -73,6 +81,8 @@ public class NotificationFragment extends Fragment {
                                 notifi.setmTitle(document.get("title").toString());
                                 notifi.setmDescription(document.get("description").toString());
                                 notifi.setImages(document.get("images").toString());
+                                notifi.setContent(document.get("content").toString());
+                                notifi.setSalaTime(document.get("saletime").toString());
 
                                 fragArrayList.add(notifi);
                             }
