@@ -1,6 +1,8 @@
 package com.example.vongship_android.DTO;
 
-public class Store {
+import java.io.Serializable;
+
+public class Store implements Serializable {
     private String storeId;
     private String storeName;
     private String distance;

@@ -15,6 +15,7 @@ import com.example.vongship_android.Activity.StoreDetailsActivity;
 import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
+import com.example.vongship_android.ViewHolder.ItemClickListener;
 import com.example.vongship_android.ViewHolder.StoreHolderHorizontal;
 import com.example.vongship_android.ViewHolder.StoreHolderVertical;
 
@@ -67,6 +68,14 @@ public class StoresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             new DownloadImageTask(viewHolder.getImg()).execute(storeArrayList.get(position).getImage());
             viewHolder.getDistance().setText(storeArrayList.get(position).getDistance());
             viewHolder.getSales().setText(storeArrayList.get(position).getSale());
+            viewHolder.setItemClickListener(new ItemClickListener() {
+                @Override
+                public void onClick(View view, int position, boolean isLongClick) {
+                    Intent intent = new Intent(context, StoreDetailsActivity.class);
+                    intent.putExtra("Store",storeArrayList.get(position));
+                    context.startActivity(intent);
+                }
+            });
 
 
         }else{

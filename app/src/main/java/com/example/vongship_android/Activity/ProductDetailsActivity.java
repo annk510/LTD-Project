@@ -111,7 +111,7 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                                 product.setProductid(document.getId());
                                 product.setProductname(document.getString("name"));
                                 product.setDescription(document.getString("description"));
-                                product.setPrice(document.getString("price"));
+                                product.setPrice(document.get("price").toString());
                                 product.setImg(R.drawable.trasua);
                                 productArrayList.add(product);
                             }
