@@ -49,11 +49,12 @@ public class ProductDetailsActivity  extends AppCompatActivity {
         TextView name = findViewById(R.id.name);
         name.setText(product.getProductname());
         TextView price = findViewById(R.id.price);
-        price.setText(product.getPrice());
+        price.setText(product.getPrice()+ "VNĐ");
         ImageView image = findViewById(R.id.image);
         new DownloadImageTask(image).execute(product.getImg());
         loadProductRecyclerView(layoutManager);
         Button button_buy = findViewById(R.id.button_buy);
+
         button_buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,13 +62,14 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                 final View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet_cards,(LinearLayout)findViewById(R.id.bottom_sheet));
                 bottomSheetDialog.setContentView(bottomSheetView);
                 bottomSheetDialog.show();
-
+                Button addtocard = bottomSheetView.findViewById(R.id.addtoCard);
+                addtocard.setText("Thêm " + product.getPrice() + "VNĐ");
                 ImageView image = bottomSheetDialog.findViewById(R.id.image);
                 new DownloadImageTask(image).execute(product.getImg());
                 TextView itemname = bottomSheetDialog.findViewById(R.id.name);
                 itemname.setText(product.getProductname());
                 TextView itemprice = bottomSheetDialog.findViewById(R.id.price);
-                itemprice.setText(product.getPrice());
+                itemprice.setText(product.getPrice() + "VNĐ");
 
                 bottomSheetView.findViewById(R.id.remove_one).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -77,6 +79,9 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                         if(currentQuantity > 1) {
                             int newQuantity = currentQuantity - 1;
                             currentQuantityText.setText(String.valueOf(newQuantity));
+                            Button addtocard = bottomSheetView.findViewById(R.id.addtoCard);
+                            addtocard.setText("Thêm "+ (newQuantity*Integer.parseInt(product.getPrice())) + "VNĐ");
+
                         }
                     }
                 });
@@ -88,12 +93,15 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                         int currentQuantity = Integer.parseInt((String) currentQuantityText.getText());
                         int newQuantity = currentQuantity + 1;
                         currentQuantityText.setText(String.valueOf(newQuantity));
+                        Button addtocard = bottomSheetView.findViewById(R.id.addtoCard);
+                        addtocard.setText("Thêm "+ (newQuantity*Integer.parseInt(product.getPrice())) + "VNĐ");
                     }
                 });
                 bottomSheetView.findViewById(R.id.addtoCard).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        bottomSheetDialog.hide();
+                        //bottomSheetDialog.hide();
+
                     }
                 });
             }

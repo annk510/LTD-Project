@@ -37,7 +37,6 @@ public class NotificationsDetailActivity extends AppCompatActivity {
         notifications = findViewById(R.id.list_in_detail_notification);
         notifications.setHasFixedSize(true);
         notifications.setLayoutManager(layoutManager);
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Stores").orderBy("distance").limit(4)
                 .get()
@@ -63,7 +62,6 @@ public class NotificationsDetailActivity extends AppCompatActivity {
                         }
                     }
                 });
-
 
     }
     @Override

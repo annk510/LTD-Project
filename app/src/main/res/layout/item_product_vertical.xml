@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="2dp">
+    android:layout_marginStart="2dp"
+    android:paddingLeft="15dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -12,7 +13,8 @@
         android:layout_centerInParent="true"
         app:cardCornerRadius="5dp"
         app:cardMaxElevation="2dp"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"

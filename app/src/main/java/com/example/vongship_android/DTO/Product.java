@@ -1,5 +1,7 @@
 package com.example.vongship_android.DTO;
 
+import android.widget.TextView;
+
 import java.io.Serializable;
 
 public class Product implements Serializable {
