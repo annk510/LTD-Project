@@ -1,7 +1,16 @@
 package com.example.vongship_android.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -14,18 +23,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.vongship_android.Adapter.CategoriesAdapter;
-import com.example.vongship_android.Adapter.StoresAdapter;
-import com.example.vongship_android.DTO.Categories;
-import com.example.vongship_android.DTO.Store;
+import com.example.vongship_android.Adapter.ProductAdapter;
+import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,68 +37,39 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class CategoryDetailsActivity extends AppCompatActivity {
-    RecyclerView stores;
-    public ArrayList<Store> storeArrayList;
-    StoresAdapter storesAdapter;
+public class SearchActivity extends AppCompatActivity {
+    RecyclerView products;
+    ArrayList<Product> productArrayList;
+    ProductAdapter productAdapter;
+    Product product;
 
-    void loadStoresRecyclerView(LinearLayoutManager layoutManager) {
-        stores = findViewById(R.id.listStore);
-        stores.setHasFixedSize(true);
-        stores.setLayoutManager(layoutManager);
-        final TextView txt1=  findViewById(R.id.txt_location_category);
-        final Categories categories = (Categories) getIntent().getSerializableExtra("category");
-        TextView categoryname = findViewById(R.id.categoryname);
-        categoryname.setText(categories.getCategoryName());
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Stores").whereEqualTo("categoryid".trim(),categories.getCategoryId())
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                                 @Override
-                                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                     if(task.isSuccessful()){
-                         storeArrayList = new ArrayList<>();
-                         for (QueryDocumentSnapshot document : task.getResult()) {
-                             Store store = new Store();
-                             store.setStoreId(document.getId());
-                             store.setStoreName(document.getString("storename"));
-                             store.setDistance(document.getString("distance"));
-                             store.setImage(document.getString("image"));
-                             store.setSale(document.getString("sale"));
-                             storeArrayList.add(store);
-                         }
-                         storesAdapter = new StoresAdapter(storeArrayList,CategoryDetailsActivity.this,LinearLayoutManager.VERTICAL);
-                         stores.setAdapter(storesAdapter);
-                     }
-                 }
-             }
-        );
-
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_details);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        loadStoresRecyclerView(layoutManager);
+        setContentView(R.layout.activity_search);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        loadProductRecyclerView(layoutManager);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarCategory);
+        Toolbar toolbar =findViewById(R.id.toolbarSearch);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setLogo(R.drawable.abc);    //logo muốn hiện thị trên action bar
         actionBar.setDisplayUseLogoEnabled(true);
-
         actionBar.setDisplayHomeAsUpEnabled(true);//của nút quay lại trên toolbar, có cái func ở dưới nữa.
-
         actionBar.setTitle("");
-        TextView location = findViewById(R.id.txt_location_category);
+
+        TextView key = findViewById(R.id.txt_keyw);
+        Intent intent = getIntent();
+        key.setText(intent.getStringExtra("key"));
+        TextView location = findViewById(R.id.txt_location_search);
         location.setText(VT());
+
     }
     public String VT() {
-        LocationManager locationManager = (LocationManager) CategoryDetailsActivity.this.getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(CategoryDetailsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(CategoryDetailsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        LocationManager locationManager = (LocationManager) SearchActivity.this.getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(SearchActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(SearchActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -119,7 +89,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             latitude = lastLocation.getLatitude();
             longitude = lastLocation.getLongitude();
         }
-        Geocoder geoCoder = new Geocoder(CategoryDetailsActivity.this, Locale.getDefault());
+        Geocoder geoCoder = new Geocoder(SearchActivity.this, Locale.getDefault());
         List<Address> matches = null;
         try {
             matches = geoCoder.getFromLocation(latitude, longitude, 1);
@@ -136,6 +106,40 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         }
 
         return address;
+
+    }
+    void loadProductRecyclerView(LinearLayoutManager layoutManager){
+        products = findViewById(R.id.listSearch);
+        products.setHasFixedSize(true);
+        products.setLayoutManager(layoutManager);
+        Intent intent = getIntent();
+        String keyw=intent.getStringExtra("key");
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Product").whereGreaterThanOrEqualTo("name",keyw).limit(5)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            productArrayList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Product product = new Product();
+                                product.setProductid(document.getId());
+                                product.setProductname(document.getString("name"));
+                                product.setDescription(document.getString("description"));
+                                product.setPrice(document.get("price").toString());
+                                product.setImg(document.getString("image"));
+                                product.setStoreid(document.getString("storeid"));
+                                productArrayList.add(product);
+                            }
+                            productAdapter = new ProductAdapter(productArrayList,SearchActivity.this, LinearLayoutManager.VERTICAL);
+                            products.setAdapter(productAdapter);
+                        } else {
+                            Log.w("adad", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
 
     }
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -172,5 +176,4 @@ public class CategoryDetailsActivity extends AppCompatActivity {
 
         }
     };
-
 }

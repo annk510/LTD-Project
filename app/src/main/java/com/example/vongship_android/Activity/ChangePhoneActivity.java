@@ -6,8 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.vongship_android.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ChangePhoneActivity extends AppCompatActivity {
     @Override
@@ -21,6 +26,11 @@ public class ChangePhoneActivity extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Thay đổi số điện thoại");
+
+        final EditText phone = findViewById(R.id.edt_changePhone);
+        Button change =findViewById(R.id.bt_change_phone);
+
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

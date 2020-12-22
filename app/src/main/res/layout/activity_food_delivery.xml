@@ -38,6 +38,8 @@
                     android:drawableStart="@drawable/ic_baseline_search_24"
                     android:ems="10"
                     android:hint="Bạn thèm món gì"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
                     android:paddingStart="15dp" />
             </LinearLayout>
 

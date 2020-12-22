@@ -56,60 +56,37 @@
             android:textStyle="bold"/>
 
         <EditText
+            android:id="@+id/edt_changePhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
             android:drawableLeft="@drawable/ic_phone"
             android:drawablePadding="10dp"
-            android:hint="Số điện thoại"
-            android:textColor="#676767"
-            android:textSize="14dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
-            android:text="Nhập mật khẩu hiện tại"
-            android:textColor="#000000"
-            android:textSize="17dp"
-            android:textStyle="bold"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/confirmPasswordsWrapper"
-            android:layout_below="@+id/passwordsWrapper"
-            android:layout_centerHorizontal="true"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            app:passwordToggleEnabled="true">
+            android:hint="Số điện thoại"
+            android:inputType="number|phone"
+            android:textColor="#676767"
+            android:textSize="14dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputconfirmPasswords"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:hint="Nhập lại mật khẩu"
-                android:inputType="textPassword"
-                android:textColorHint="#64BCF6"
-                android:textStyle="italic" />
-        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
     <LinearLayout
-        android:layout_marginTop="50dp"
         android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
         <Button
-            android:id="@+id/bt_change_pass"
-            android:layout_below="@id/phoneTv"
+            android:id="@+id/bt_change_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@id/phoneTv"
+            android:background="@drawable/button_red"
             android:text="Lưu"
             android:textAllCaps="false"
-            android:textStyle="bold"
-            android:textSize="25dp"
             android:textColor="#FFFFFF"
-            android:background="@drawable/button_red"
-            />
+            android:textSize="22sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

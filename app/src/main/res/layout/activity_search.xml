@@ -7,16 +7,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarCategory"
+        android:id="@+id/toolbarSearch"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="#fff"
         app:contentInsetLeft="170dp"
         app:contentInsetStart="170dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +32,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/txt_location_category"
+            android:id="@+id/txt_location_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -50,40 +46,43 @@
             android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
+
     <LinearLayout
-        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:weightSum="10"
-        android:layout_marginTop="10dp">
+        android:padding="10dp"
+        android:weightSum="3">
+
         <TextView
             android:id="@+id/categoryname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="7"
             android:layout_gravity="center_vertical"
-            android:text="Tên danh mục"
+            android:lines="1"
+            android:layout_weight="1"
+            android:text="Từ khóa:"
             android:textColor="#000"
-            android:textSize="25dp"
-            android:textStyle="bold"/>
-            <Button
-                android:id="@+id/Bt_ViewALL4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Quan tâm"
-                android:textAllCaps="false"
-                android:textColor="@android:color/black"
-                android:layout_gravity="right"
-                />
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_keyw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:fontFamily="@font/montserrat"
+            android:text="TextView"
+            android:textColor="#00BCD4"
+            android:textSize="20sp" />
     </LinearLayout>
     <LinearLayout
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listStore"
+            android:id="@+id/listSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
