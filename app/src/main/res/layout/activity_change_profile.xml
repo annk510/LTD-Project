@@ -53,6 +53,7 @@
             android:id="@+id/txt_change_mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:fontFamily="@font/montserrat"
             android:hint="Nhập email của bạn"
             android:textColor="#676767"
@@ -123,24 +124,25 @@
             android:textSize="14dp"
             android:textStyle="bold"/>
     </LinearLayout>
+
     <LinearLayout
-        android:layout_marginTop="50dp"
         android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
         <Button
-            android:id="@+id/bt_update"
-            android:layout_below="@id/phoneTv"
+            android:id="@+id/bt_change_profile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@id/phoneTv"
+            android:background="@drawable/button_red"
             android:text="Lưu"
             android:textAllCaps="false"
-            android:textStyle="bold"
-            android:textSize="25dp"
             android:textColor="#FFFFFF"
-            android:background="@drawable/button_red"
-            />
+            android:textSize="22sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

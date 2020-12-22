@@ -8,13 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.vongship_android.Adapter.ProductAdapter;
 import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.Class.DownloadImageTask;
+import com.example.vongship_android.DTO.Product;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,26 +38,30 @@ public class NotificationsDetailActivity extends AppCompatActivity {
         notifications.setHasFixedSize(true);
         notifications.setLayoutManager(layoutManager);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Stores")
-            .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                 @Override
-                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                 if(task.isSuccessful()){
-                     storeArrayList = new ArrayList<Store>();
-                     for (QueryDocumentSnapshot document : task.getResult()) {
-                         Store store = new Store();
-                         store.setStoreId(document.getId());
-                         store.setStoreName(document.getString("storename"));
-                         store.setDistance(document.getString("distance"));
-                         store.setImage(document.getString("image"));
-                         store.setSale(document.getString("sale"));
-                         storeArrayList.add(store);
-                     }
-                     storeArrayList.add(new Store("yLd8mWjPtzORB3aHxDuD","Cà Phê Trung Nguyên","2 km","Sale 12%","https://firebasestorage.googleapis.com/v0/b/doanltdd-60a15.appspot.com/o/Image%2Fshopcf1.png?alt=media&token=94d36d69-e67c-473a-930b-8bfd63d6b6d2"));
-                     storesAdapter = new StoresAdapter(storeArrayList,NotificationsDetailActivity.this,LinearLayoutManager.VERTICAL);
-                     notifications.setAdapter(storesAdapter);
-                 }
-                                             }});
+        db.collection("Stores").orderBy("distance").limit(4)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            storeArrayList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Store store = new Store();
+                                store.setStoreId(document.getId());
+                                store.setStoreName(document.getString("storename"));
+                                store.setDistance(document.getString("distance"));
+                                store.setImage(document.getString("image"));
+                                store.setSale(document.getString("sale"));
+                                storeArrayList.add(store);
+                            }
+                            storesAdapter = new StoresAdapter(storeArrayList,NotificationsDetailActivity.this,LinearLayoutManager.VERTICAL);
+                            notifications.setAdapter(storesAdapter);
+                        } else {
+                            Log.w("Error", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
 
     }
     @Override

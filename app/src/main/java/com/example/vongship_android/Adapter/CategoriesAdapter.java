@@ -38,7 +38,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         if(orientationOfList == LinearLayoutManager.HORIZONTAL){
             View itemView = inflater.inflate(R.layout.item_category_horizontal,parent,false);
-
             return new CategoryHolderHorizontal(itemView);
         }else {
             View itemView = inflater.inflate(R.layout.item_category_vertical,parent,false);

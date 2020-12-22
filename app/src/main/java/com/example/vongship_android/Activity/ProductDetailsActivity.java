@@ -100,7 +100,8 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                 bottomSheetView.findViewById(R.id.addtoCard).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        bottomSheetDialog.hide();
+                        //bottomSheetDialog.hide();
+
                     }
                 });
             }
