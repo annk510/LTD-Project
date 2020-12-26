@@ -74,6 +74,8 @@ public class ChangeProfileActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "Đã cập nhật", Toast.LENGTH_SHORT).show();
                                     onBackPressed();
+                                }else {
+                                    Toast.makeText(getApplicationContext(), "Lỗi !!!", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
