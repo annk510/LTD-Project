@@ -105,20 +105,17 @@ public class HomeFragment extends Fragment {
        txtDate.setText(currentDateandTime);
 
         RecyclerView recyclerView =root.findViewById(R.id.sectionsInHomeFragment);
-        loadSections();
+        sectionsAdapter = loadSections();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(sectionsAdapter);
-
-
         return root;
     }
-    void loadSections(){
+    SectionsAdapter loadSections(){
         sectionArrayList = new ArrayList<>();
         //Section cửa hàng gần đây
         final Section section = new Section();
         section.setHeaderTitle("CỬA HÀNG MỚI");
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Stores")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -135,31 +132,16 @@ public class HomeFragment extends Fragment {
                              store.setSale(document.getString("sale"));
                              storeArrayList.add(store);
                          }
+                         storeArrayList.add(new Store("yLd8mWjPtzORB3aHxDuD","Cà Phê Trung Nguyên","2 km","Sale 12%","https://firebasestorage.googleapis.com/v0/b/doanltdd-60a15.appspot.com/o/Image%2Fshopcf1.png?alt=media&token=94d36d69-e67c-473a-930b-8bfd63d6b6d2"));
                          section.setListContent(storeArrayList);
                          sectionArrayList.add(section);
-
                      }
                  }
              }
         );
 
-
-
-//        //Section cửa hàng mới
-//        Section section1 = new Section();
-//        section1.setHeaderTitle("CỬA HÀNG KHUYẾN MÃI");
-//        ArrayList<Store> storeArrayList1 = new ArrayList<>();
-//        storeArrayList1.add(new Store("Cơm Chiên Hảo Hảo","1.3 km","Sale 11%",R.drawable.comchien));
-//        storeArrayList1.add(new Store("Bánh Cuốn Lê Duẫn","2.5 km","Freeship 3km",R.drawable.banhcuon));
-//        storeArrayList1.add(new Store("Milk Tea & Coffe - Bông","500 m","Sale 17 %",R.drawable.trasua));
-//        storeArrayList1.add(new Store("Bánh Ép Huế Kim Ngân","700 m","Freeship 2km",R.drawable.banhep));
-//        storeArrayList1.add(new Store("Cơm Gà Trần Cao Vân","300 m","Sale 15%",R.drawable.comga));
-//        storeArrayList1.add(new Store("Quán Ngố - Nước Dừa","2 km","Freeship 2km",R.drawable.nuocdua));
-//        section1.setListContent(storeArrayList1);
-//        sectionArrayList.add(section1);
-//
-       sectionsAdapter = new SectionsAdapter(sectionArrayList,getActivity());
-
+        sectionsAdapter = new SectionsAdapter(sectionArrayList,getActivity());
+        return new SectionsAdapter(sectionArrayList,getActivity());
     }
     private void makeRequest() {
         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -167,10 +149,6 @@ public class HomeFragment extends Fragment {
         startActivity(refresh);
         getActivity().finish();
     }
-
-
-
-
     public String VT() {
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
