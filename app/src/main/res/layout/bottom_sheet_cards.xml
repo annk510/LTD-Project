@@ -65,10 +65,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ghi chú thêm cho món ăn(nếu có)"/>
+            android:hint="Ghi chú thêm cho món ăn(nếu có)" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,13 +110,13 @@
         </LinearLayout>
 
         <Button
-            android:layout_weight="2"
             android:id="@+id/addtoCard"
             android:layout_width="30dp"
             android:layout_height="40dp"
+            android:layout_weight="2"
             android:background="@drawable/button_red"
-            android:textSize="18dp"
             android:text="Thêm "
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

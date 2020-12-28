@@ -105,12 +105,6 @@
                         android:textSize="18sp"
                         tools:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Xem tất cả ()"
-                        android:textAlignment="textEnd" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -139,12 +133,6 @@
                         android:text="CỬA HÀNG GẦN ĐÂY"
                         android:textSize="18sp"
                         tools:textStyle="bold" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Xem tất cả ()"
-                        android:textAlignment="textEnd" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/StoresRecyclerView"
@@ -172,12 +160,6 @@
                         android:text="CỬA HÀNG MỚI"
                         android:textSize="18sp"
                         tools:textStyle="bold" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Xem tất cả ()"
-                        android:textAlignment="textEnd" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/StoresRecyclerView1"

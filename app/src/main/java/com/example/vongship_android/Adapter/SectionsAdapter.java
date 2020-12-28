@@ -57,6 +57,7 @@ public class SectionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             viewHolder.getContent().setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             viewHolder.getContent().setAdapter(storesAdapter);
         }
+
         if (sections.get(position).getListContent().get(0) instanceof Categories){
             CategoriesAdapter categoriesAdapter = new CategoriesAdapter(sections.get(position).getListContent(),context, LinearLayoutManager.HORIZONTAL);
             viewHolder.getContent().setHasFixedSize(true);

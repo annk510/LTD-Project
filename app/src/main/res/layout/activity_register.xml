@@ -48,14 +48,32 @@
         android:textColor="#000000"
         android:textSize="26sp"
         android:textStyle="bold" />
+    <com.google.android.material.textfield.TextInputLayout
 
+        android:id="@+id/inputlayout5"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/heading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Họ và tên"
+            android:inputType="text"
+            android:textColorHint="#8D8E8F"
+            android:textStyle="italic" />
+    </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
 
         android:id="@+id/inputlayout1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_below="@+id/heading"
+        android:layout_below="@+id/inputlayout5"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp">
 

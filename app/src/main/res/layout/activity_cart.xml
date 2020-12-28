@@ -15,36 +15,40 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_cart"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#fff"
-            app:contentInsetStart="110dp" />
+            app:contentInsetStart="140dp" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/Ln_store"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:background="#FFF"
+        android:clickable="false"
+
         android:orientation="vertical"
         android:padding="15dp">
 
         <TextView
+            android:id="@+id/storeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sachi Qunán - Cao Lầu"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/storeAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_forward"
             android:text="27 Lương ĐỊnh Của, Khuê Trung, Cẩm Lệ, Đà Nẵng"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,18 +66,19 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
-                android:layout_width="76dp"
-                android:layout_height="76dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
+                android:id="@+id/UserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 android:text="Nguyễn Hữu Vọng"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -81,13 +86,26 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text=" (bạn)"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
+
+        <TextView
+            android:id="@+id/vt_Cart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cart"/>
+            android:layout_marginTop="5dp"
+            android:background="@drawable/borderbot"
+            android:lines="2"
+            android:paddingLeft="15dp"
+            android:text="TextView"
+            tools:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp" />
 
 
 
@@ -105,6 +123,32 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="15dp">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Phí Ship:"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="15.000 đ"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingHorizontal="15dp"
@@ -116,7 +160,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Tổng (tạm tính)"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -127,11 +171,12 @@
                         android:gravity="right"
                         android:text="25.000 đ"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/add_cart"
                     android:textColor="#FFF"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"

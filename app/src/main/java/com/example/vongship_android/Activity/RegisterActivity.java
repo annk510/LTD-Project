@@ -22,11 +22,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextView gotoLogin;
     private CheckBox policy;
-    private EditText inputGmail, inputPasswords, inputconfirmPasswords;
+    private EditText inputGmail, inputPasswords, inputconfirmPasswords,inputName;
     private Button button_register;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
@@ -38,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         gotoLogin = (TextView)  findViewById(R.id.gotoLogin);
         button_register = (Button) findViewById(R.id.button_register);
         inputGmail = (EditText) findViewById(R.id.inputGmail);
+        inputName = (EditText) findViewById(R.id.inputName);
         inputPasswords = (EditText) findViewById(R.id.inputPasswords);
         inputconfirmPasswords =(EditText) findViewById(R.id.inputconfirmPasswords);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -57,11 +60,15 @@ public class RegisterActivity extends AppCompatActivity {
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                 String name = inputName.getText().toString().trim();
                 String gmail = inputGmail.getText().toString().trim();
                 String password = inputPasswords.getText().toString().trim();
                 String confirm = inputconfirmPasswords.getText().toString().trim();
 
+                if (TextUtils.isEmpty(name)) {
+                    Toast.makeText(getApplicationContext(), "Tên không được trống!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (TextUtils.isEmpty(gmail)) {
                     Toast.makeText(getApplicationContext(), "Email không được trống!", Toast.LENGTH_SHORT).show();
                     return;
@@ -86,20 +93,23 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
-                //create user
+
                 auth.createUserWithEmailAndPassword(gmail, password)
                         .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 Toast.makeText(RegisterActivity.this, "Tạo tài khoản thành công:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
+
                                 if (!task.isSuccessful()) {
                                     Toast.makeText(RegisterActivity.this, "Thất bại." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
+                                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                            .setDisplayName(inputName.getText().toString())
+                                            .build();
+                                    user.updateProfile(profileUpdates);
                                     startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                                     finish();
                                 }

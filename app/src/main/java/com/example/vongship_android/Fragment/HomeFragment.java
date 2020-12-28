@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.vongship_android.Activity.Cart;
 import com.example.vongship_android.Activity.FoodDeliveryActivity;
 import com.example.vongship_android.Activity.LoginActivity;
 import com.example.vongship_android.Activity.MainActivity;
@@ -109,20 +110,33 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(sectionsAdapter);
+
+        CardView cart = root.findViewById(R.id.cv_cart);
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Cart.class);
+                startActivity(intent);
+            }
+        });
+
         return root;
     }
     SectionsAdapter loadSections(){
         sectionArrayList = new ArrayList<>();
         //Section cửa hàng gần đây
         final Section section = new Section();
-        section.setHeaderTitle("CỬA HÀNG MỚI");
+        section.setHeaderTitle("THỬ QUÁN MỚI");
+        final ArrayList<Store> storeArrayList = new ArrayList<>();
+        storeArrayList.add(new Store("yLd8mWjPtzORB3aHxDuD","Cà Phê Trung Nguyên","5.6 km","Sale 12%","https://firebasestorage.googleapis.com/v0/b/doanltdd-60a15.appspot.com/o/Image%2Fshopcf1.png?alt=media&token=94d36d69-e67c-473a-930b-8bfd63d6b6d2"));
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Stores")
+        db.collection("Stores").whereEqualTo("new",true)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                  @Override
                                                  public void onComplete(@NonNull Task<QuerySnapshot> task) {
                      if(task.isSuccessful()){
-                         ArrayList<Store> storeArrayList = new ArrayList<>();
+
                          for (QueryDocumentSnapshot document : task.getResult()) {
                              Store store = new Store();
                              store.setStoreId(document.getId());
@@ -132,16 +146,42 @@ public class HomeFragment extends Fragment {
                              store.setSale(document.getString("sale"));
                              storeArrayList.add(store);
                          }
-                         storeArrayList.add(new Store("yLd8mWjPtzORB3aHxDuD","Cà Phê Trung Nguyên","2 km","Sale 12%","https://firebasestorage.googleapis.com/v0/b/doanltdd-60a15.appspot.com/o/Image%2Fshopcf1.png?alt=media&token=94d36d69-e67c-473a-930b-8bfd63d6b6d2"));
-                         section.setListContent(storeArrayList);
-                         sectionArrayList.add(section);
                      }
                  }
              }
         );
+        section.setListContent(storeArrayList);
 
+
+        final Section section1 = new Section();
+        section1.setHeaderTitle("ĐANG KHUYẾN MÃI");
+        final ArrayList<Store> storeArrayList1 = new ArrayList<>();
+        storeArrayList1.add(new Store("dZ7lThqPIbXULE8avgPs","Bánh Mì 69 Lê Duẩn","1.5 km","Sale 7%","https://firebasestorage.googleapis.com/v0/b/doanltdd-60a15.appspot.com/o/Image%2Fshopbm2.png?alt=media&token=09600cc9-ae17-4009-8db0-f054fa8e3fb9"));
+        db.collection("Stores").limit(6).orderBy("distance")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                     @Override
+                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                         if(task.isSuccessful()){
+
+                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                 Store store = new Store();
+                                 store.setStoreId(document.getId());
+                                 store.setStoreName(document.getString("storename"));
+                                 store.setDistance(document.getString("distance"));
+                                 store.setImage(document.getString("image"));
+                                 store.setSale(document.getString("sale"));
+                                 storeArrayList1.add(store);
+                             }
+                         }
+                     }
+                 }
+        );
+        section1.setListContent(storeArrayList1);
+
+        sectionArrayList.add(section);
+        sectionArrayList.add(section1);
         sectionsAdapter = new SectionsAdapter(sectionArrayList,getActivity());
-        return new SectionsAdapter(sectionArrayList,getActivity());
+        return sectionsAdapter;
     }
     private void makeRequest() {
         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
