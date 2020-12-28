@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vongship_android.Activity.Cart;
+import com.example.vongship_android.Activity.ProductDetailsActivity;
 import com.example.vongship_android.DTO.Product_order;
 import com.example.vongship_android.R;
 import com.example.vongship_android.ViewHolder.CategoryHolderHorizontal;
@@ -38,20 +39,20 @@ public class Product_OrderAdapter extends RecyclerView.Adapter<RecyclerView.View
         final Product_OrderViewHolder product_orderViewHolder = (Product_OrderViewHolder) holder;
         product_orderViewHolder.getName().setText(product_orders.get(position).getProductname());
         product_orderViewHolder.getQuantity().setText(product_orders.get(position).getQuatity());
-        product_orderViewHolder.getTotalmoney().setText(Integer.parseInt(product_orders.get(position).getQuatity())*Integer.parseInt(product_orders.get(position).getPrice()));
+        product_orderViewHolder.getTotalmoney().setText(String.valueOf(Integer.parseInt(product_orders.get(position).getQuatity())*Integer.parseInt(product_orders.get(position).getPrice())));
         product_orderViewHolder.getCong1().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int currentQuantity = Integer.parseInt((String) product_orderViewHolder.getQuantity().getText());
                 currentQuantity ++;
-                product_orderViewHolder.getQuantity().setText(currentQuantity);
-                product_orderViewHolder.getTotalmoney().setText(currentQuantity*Integer.parseInt(product_orders.get(position).getPrice()));
+                product_orderViewHolder.getQuantity().setText(String.valueOf(currentQuantity));
+                product_orderViewHolder.getTotalmoney().setText(String.valueOf(currentQuantity*Integer.parseInt(product_orders.get(position).getPrice())));
                 product_orders.get(position).setQuatity(String.valueOf(currentQuantity));
                 int summoney = 0;
                 for (Product_order product_order: product_orders) {
                     summoney += (Integer.parseInt(product_order.getQuatity())*Integer.parseInt(product_order.getPrice()));
                 }
-                Cart.totalmoney.setText(String.valueOf(summoney));
+                Cart.totalmoneytext.setText(String.valueOf(summoney));
             }
         });
         product_orderViewHolder.getTru1().setOnClickListener(new View.OnClickListener() {
@@ -60,17 +61,19 @@ public class Product_OrderAdapter extends RecyclerView.Adapter<RecyclerView.View
                 int currentQuantity = Integer.parseInt((String) product_orderViewHolder.getQuantity().getText());
                 currentQuantity--;
                 if (currentQuantity>0) {
-                    product_orderViewHolder.getQuantity().setText(currentQuantity);
-                    product_orderViewHolder.getTotalmoney().setText(currentQuantity*Integer.parseInt(product_orders.get(position).getPrice()));
+                    product_orderViewHolder.getQuantity().setText(String.valueOf(currentQuantity));
+                    product_orderViewHolder.getTotalmoney().setText(String.valueOf(currentQuantity*Integer.parseInt(product_orders.get(position).getPrice())));
                     product_orders.get(position).setQuatity(String.valueOf(currentQuantity));
                 }else {
                     product_orders.remove(product_orders.get(position));
+                    Product_OrderAdapter product_orderAdapter = new Product_OrderAdapter(ProductDetailsActivity.product_orderArrayList,Cart.context);
+                    Cart.cart.setAdapter(product_orderAdapter);
                 }
                 int summoney = 0;
                 for (Product_order product_order: product_orders ) {
                     summoney += (Integer.parseInt(product_order.getQuatity())*Integer.parseInt(product_order.getPrice()));
                 }
-                Cart.totalmoney.setText(String.valueOf(summoney));
+                Cart.totalmoneytext.setText(String.valueOf(summoney));
             }
         });
     }
