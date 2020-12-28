@@ -1,5 +1,7 @@
 package com.example.vongship_android.Activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import com.example.vongship_android.Adapter.ProductAdapter;
 import com.example.vongship_android.Adapter.StoresAdapter;
 import com.example.vongship_android.Class.DownloadImageTask;
 import com.example.vongship_android.DTO.Product;
+import com.example.vongship_android.DTO.Product_order;
 import com.example.vongship_android.DTO.Store;
 import com.example.vongship_android.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,8 +38,9 @@ import java.util.ArrayList;
 public class ProductDetailsActivity  extends AppCompatActivity {
     RecyclerView products;
     ArrayList<Product> productArrayList;
-     ProductAdapter productAdapter;
-     Product product;
+    ProductAdapter productAdapter;
+    Product product;
+    public static ArrayList<Product_order> product_orderArrayList  = new ArrayList<>();;
 
 
     @Override
@@ -70,11 +74,11 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                 itemname.setText(product.getProductname());
                 TextView itemprice = bottomSheetDialog.findViewById(R.id.price);
                 itemprice.setText(product.getPrice() + "VNĐ");
-
+                final TextView currentQuantityText = bottomSheetView.findViewById(R.id.quantity);
                 bottomSheetView.findViewById(R.id.remove_one).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        TextView currentQuantityText = bottomSheetView.findViewById(R.id.quantity);
+
                         int currentQuantity = Integer.parseInt((String) currentQuantityText.getText());
                         if(currentQuantity > 1) {
                             int newQuantity = currentQuantity - 1;
@@ -89,7 +93,6 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                 bottomSheetView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        TextView currentQuantityText = bottomSheetView.findViewById(R.id.quantity);
                         int currentQuantity = Integer.parseInt((String) currentQuantityText.getText());
                         int newQuantity = currentQuantity + 1;
                         currentQuantityText.setText(String.valueOf(newQuantity));
@@ -102,6 +105,31 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                     public void onClick(View view) {
                         //bottomSheetDialog.hide();
 
+                        Product_order product_order = new Product_order();
+                        product_order.setProductid(product.getProductid());
+                        product_order.setStoreid(product.getStoreid());
+                        product_order.setPrice(product.getPrice());
+                        product_order.setImg(product.getImg());
+                        product_order.setDescription(product.getDescription());
+                        product_order.setQuatity((String) currentQuantityText.getText());
+                        product_order.setProductname(product.getProductname());
+                        if (product_orderArrayList.isEmpty()){
+                            product_orderArrayList.add(product_order);
+                        }
+                        else {
+                            if(isTheSameStoreinCart(product_order.getStoreid())){
+                                if(isContainsProductinCart(product_order.getProductid())){
+
+                                }else{
+                                    product_orderArrayList.add(product_order);
+                                }
+                            }else{
+                                product_orderArrayList = new ArrayList<>();
+                                product_orderArrayList.add(product_order);
+                            }
+                        }
+                        Intent intent = new Intent(ProductDetailsActivity.this, Cart.class);
+                        ProductDetailsActivity.this.startActivity(intent);
                     }
                 });
             }
@@ -150,6 +178,18 @@ public class ProductDetailsActivity  extends AppCompatActivity {
                     }
                 });
 
+    }
+    public boolean isContainsProductinCart(String productid){
+        for (Product_order product_order: product_orderArrayList
+             ) {
+            if(product_order.getProductid().equalsIgnoreCase(productid)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isTheSameStoreinCart(String storeid){
+        return product_orderArrayList.get(0).getStoreid().equalsIgnoreCase(storeid);
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

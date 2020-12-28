@@ -1,11 +1,16 @@
 package com.example.vongship_android.DTO;
 
-public class Product_order extends Product{
+import java.io.Serializable;
+
+public class Product_order extends Product implements Serializable {
     private String quatity;
 
     public Product_order(String quatity) {
         super();
         this.quatity = quatity;
+    }
+
+    public Product_order() {
     }
 
     public String getQuatity() {
